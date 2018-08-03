@@ -1,0 +1,9 @@
+## Interface: 80000
+## Title: _Template |cff006600(code development)
+## Author: Kizrak
+## DefaultState: Enabled
+## Notes: Example for creating new Add-ons
+## Dependencies: _Library
+
+_Template.lua
+_Template.xml

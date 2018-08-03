@@ -1,0 +1,22 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	
+	<Button name="CLEARTARGET" inherits="SecureActionButtonTemplate">
+	
+	<Scripts>
+		<OnLoad>
+			CLEARTARGET:SetAttribute("type1", "macro")
+			CLEARTARGET:SetAttribute("macrotext", "/stopcasting [noexists] \n/cleartarget \n/run ScrollToBottom() QuadSafeEndCinematic() ")
+		</OnLoad>
+	</Scripts>
+	</Button>
+	
+	<Script file="_Esc.lua"/>
+	
+	<Frame name="ESCKEYFRAME" hidden="false">
+		<Scripts>
+			<OnUpdate>
+				Esc_OnUpdate(arg1)
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

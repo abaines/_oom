@@ -1,0 +1,9 @@
+## Interface: 80000
+## Title: _Holiday |cff660066(Alpha)
+## Author: Kizrak
+## DefaultState: Disabled
+## Notes: Example for creating new Add-ons
+## Dependencies: _Library
+
+_Holiday.lua
+_Holiday.xml

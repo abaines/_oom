@@ -1,0 +1,19 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+	<Script file="_Banker.lua"/>
+
+	<Frame name="BankerFrame" hidden="false">
+		<Scripts>
+			<OnLoad>
+				Banker_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Banker_OnEvent(self,event,...);
+			</OnEvent>
+			<OnUpdate>
+				Banker_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+
+</Ui>

@@ -1,0 +1,9 @@
+## Interface: 80000
+## Title: _EventFinder |cff006600(code development)
+## Author: Kizrak
+## DefaultState: Enabled
+## Notes: Add-on for assisting in code development by finding and parsing WoW Events.
+## Dependencies: _Library
+
+_EventFinder.lua
+_EventFinder.xml

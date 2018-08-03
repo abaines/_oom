@@ -1,0 +1,13 @@
+## Interface: 80000
+## Title: _Library |cffFF6600(core)
+## Author: Kizrak
+## DefaultState: Enabled
+## Notes: Library for _OOM add-ons.
+## SavedVariables: LibraryConfig
+
+_Library.lua
+_xtimer.lua
+_Banking.lua
+_Buttons.xml
+_TooltipSoulboundScanner.lua
+_BattlePets.lua

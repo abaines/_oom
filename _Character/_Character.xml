@@ -1,0 +1,19 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+	<Script file="_Character.lua"/>
+
+	<Frame name="CharacterRecordFrame" hidden="false">
+		<Scripts>
+			<OnLoad>
+				Character_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Character_OnEvent(self,event,...);
+			</OnEvent>
+			<OnUpdate>
+				Character_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+
+</Ui>

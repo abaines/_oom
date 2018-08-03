@@ -1,0 +1,10 @@
+## Interface: 80000
+## Title: _Banker
+## Notes: For Recording Bank, Inventory, & Mail Data
+## DefaultState: Enabled
+## Author: Kizrak
+## Dependencies: _Library
+## SavedVariables: Inventory
+
+_Banker.xml
+_Banker.lua

@@ -1,0 +1,19 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+	<Script file="_Commands.lua"/>
+
+	<Frame name="CommandsFrame" hidden="false">
+		<Scripts>
+			<OnLoad>
+				Commands_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Commands_OnEvent(self,event,...);
+			</OnEvent>
+			<OnUpdate>
+				Commands_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+
+</Ui>

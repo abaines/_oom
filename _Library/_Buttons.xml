@@ -1,0 +1,79 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+
+	<Button name="smartassist" inherits="SecureActionButtonTemplate">
+		<Scripts>
+			<OnLoad>
+smartassist:SetAttribute("type", "macro")
+smartassist:SetAttribute("macrotext", "/target [harm,nodead] [@focus-target,harm,nodead] [@target-target,harm,nodead] [@pet-target,harm,nodead] [@mouseover-target,harm,nodead] \n/stopmacro [harm,nodead] [group] \n/targetenemy")
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+	<Button name="pvpassist" inherits="SecureActionButtonTemplate">
+		<Scripts>
+			<OnLoad>
+pvpassist:SetAttribute("type1", "macro")
+pvpassist:SetAttribute("macrotext", "/cast [stance:3] Intercept ; [combat,nostance:3] Berserker Stance ; [stance:1,nocombat] Charge ; [nostance:1,nocombat] Battle Stance ; Intercept  ")
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+	<Button name="mendpet" inherits="SecureActionButtonTemplate">
+		<Scripts>
+			<OnLoad>
+mendpet:SetAttribute("type1", "macro")
+mendpet:SetAttribute("macrotext", "#showtooltip \n/cast [pet] Mend Pet ; [target=pet,dead] Revive Pet ; Call Pet ")
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+	
+	
+	<Button name="unbornvalkyr" inherits="SecureActionButtonTemplate">
+		<Scripts>
+			<OnLoad>
+unbornvalkyr:SetAttribute("type1", "macro")
+unbornvalkyr:SetAttribute("macrotext", [[
+/way Icecrown 47.9, 86.6
+/way Icecrown 73.8, 64.5
+/way Icecrown 43, 33
+
+/way Storm Peaks 42.5, 78.5
+/way Storm Peaks 65, 41
+/way Storm Peaks 29.0, 50.0
+
+/way Borean Tundra 48, 8
+/way Borean Tundra 80, 48
+/way Borean Tundra 32.7, 60.1
+
+/way Sholazar Basin 58.5, 22.0
+/way Sholazar Basin 44.47, 69.59
+/way Sholazar Basin 36.8, 19.4
+
+/way Zul'Drak 57.0, 39.8
+/way Zul'Drak 75, 22
+/way Zul'Drak 24.3, 63.7
+
+/way Dragonblight 82, 66
+/way Dragonblight 26.9, 54.1
+/way Dragonblight 64.4, 43.7
+
+/way Grizzly Hills 61, 18
+/way Grizzly Hills 79.60, 50.79
+/way Grizzly Hills 26, 57
+
+/way Howling Fjord 71.91, 43.39
+/way Howling Fjord 45, 43
+/way Howling Fjord 68.10, 67.63
+
+/way Crystalsong Forest 18.6 57.0
+/way Crystalsong Forest 43.3 44.0
+/way Crystalsong Forest 67.8 49.5
+
+/script PlaySound("RaidWarning")
+]])
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+</Ui>

@@ -1,0 +1,9 @@
+## Interface: 80000
+## Title: _FriendsWithBenefits |cff660066(Beta)
+## Author: Kizrak
+## DefaultState: Disabled
+## Notes: Allows party/raid helpful tools, such as allowing anyone to invite people to a group, or letting group know you are geting on a multi-person mount.
+## Dependencies: _Library
+
+_FriendsWithBenefits.lua
+_FriendsWithBenefits.xml

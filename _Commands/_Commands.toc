@@ -1,0 +1,10 @@
+## Interface: 80000
+## Title: _Commands |cff660066(Alpha)
+## Author: Kizrak
+## DefaultState: Enabled
+## Notes: Enable /slashcommands for OOM add-ons. 
+## Dependencies: _Library
+## OptionalDeps: _Banker, _CannotHeal, _Character, _EnteredCombat, _Follow, _SurvivalOfTheFittest
+
+_Commands.lua
+_Commands.xml

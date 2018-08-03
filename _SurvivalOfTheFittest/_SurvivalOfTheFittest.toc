@@ -1,0 +1,9 @@
+## Interface: 80000
+## Title: _SurvivalOfTheFittest |cff660066(Alpha)
+## Author: Kizrak
+## DefaultState: Enabled
+## Notes: Helps find over population of battle pets and makes suggestions for which to release.
+## Dependencies: _Library
+
+_SurvivalOfTheFittest.lua
+_SurvivalOfTheFittest.xml

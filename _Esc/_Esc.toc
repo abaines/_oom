@@ -1,0 +1,9 @@
+## Interface: 80000
+## Title: _Esc
+## Author: Kizrak
+## DefaultState: Enabled
+## Notes: This addon rebinds your ESC key to clear target, stop casting & scroll to bottom.
+## Dependencies: _Library
+
+_Esc.xml
+_Esc.lua

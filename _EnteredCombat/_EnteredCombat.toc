@@ -1,0 +1,9 @@
+## Interface: 80000
+## Title: _EnteredCombat
+## Author: Kizrak
+## DefaultState: Enabled
+## Notes: Detect/announcing when party members enter combat (when they should not)
+## Dependencies: _Library
+
+_EnteredCombat.lua
+_EnteredCombat.xml

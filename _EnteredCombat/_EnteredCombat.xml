@@ -1,0 +1,19 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+	<Script file="_EnteredCombat.lua"/>
+
+	<Frame name="EnteredCombatFrame" hidden="false">
+		<Scripts>
+			<OnLoad>
+				EnteredCombat_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				EnteredCombat_OnEvent(self,event,...);
+			</OnEvent>
+			<OnUpdate>
+				EnteredCombat_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+
+</Ui>

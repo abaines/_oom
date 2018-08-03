@@ -1,0 +1,9 @@
+## Interface: 80000
+## Title: _Postmaster |cff006600(code development)
+## Author: Kizrak
+## DefaultState: Enabled
+## Notes: Postmaster Dalaran Mailroom
+## Dependencies: _Library
+
+_Postmaster.lua
+_Postmaster.xml

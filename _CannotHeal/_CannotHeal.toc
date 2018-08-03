@@ -1,0 +1,9 @@
+## Interface: 80000
+## Title: _CannotHeal |cff660066(Beta)
+## Author: Kizrak
+## DefaultState: Enabled
+## Notes: Tells your group when you Cannot Heal due to Crowd Control
+## Dependencies: _Library
+
+_CannotHeal.lua
+_CannotHeal.xml

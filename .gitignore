@@ -1,22 +1,45 @@
-#
-# If all files excluded and you will include only specific sub-directories
-# the parent path must matched before.
-#
-
+# Ignore everything except...
 /**
 !/.gitignore
 
-!/_Template/**
+!/_Banker/
 !/_Banker/**
+
+!/_CannotHeal/
 !/_CannotHeal/**
+
+!/_Character/
 !/_Character/**
+
+!/_Commands/
 !/_Commands/**
+
+!/_EnteredCombat/
 !/_EnteredCombat/**
+
+!/_Esc/
 !/_Esc/**
+
+!/_EventFinder/
 !/_EventFinder/**
+
+!/_Follow/
 !/_Follow/**
+
+!/_FriendsWithBenefits/
 !/_FriendsWithBenefits/**
+
+!/_Holiday/
 !/_Holiday/**
+
+!/_Library/
 !/_Library/**
+
+!/_Postmaster/
 !/_Postmaster/**
+
+!/_SurvivalOfTheFittest/
 !/_SurvivalOfTheFittest/**
+
+!/_Template/
+!/_Template/**

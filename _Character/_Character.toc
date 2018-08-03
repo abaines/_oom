@@ -1,0 +1,10 @@
+## Interface: 80000
+## Title: _Character
+## Notes: For Recording Character sheet details, like class/race/level, professions, gold, heirlooms, and bags
+## DefaultState: Enabled
+## Author: Kizrak
+## Dependencies: _Library
+## SavedVariables: CharacterRecord
+
+_Character.xml
+_Character.lua

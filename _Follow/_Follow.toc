@@ -1,0 +1,9 @@
+## Interface: 80000
+## Title: _Follow
+## Author: Kizrak
+## DefaultState: Enabled
+## Notes: Auto follow people when they whisper you the correct phrase.
+## Dependencies: _Library
+
+_Follow.xml
+_Follow.lua
