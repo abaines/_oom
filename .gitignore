@@ -6,4 +6,17 @@
 /**
 !/.gitignore
 
-!/_**/
+!/_Template/**
+!/_Banker/**
+!/_CannotHeal/**
+!/_Character/**
+!/_Commands/**
+!/_EnteredCombat/**
+!/_Esc/**
+!/_EventFinder/**
+!/_Follow/**
+!/_FriendsWithBenefits/**
+!/_Holiday/**
+!/_Library/**
+!/_Postmaster/**
+!/_SurvivalOfTheFittest/**
