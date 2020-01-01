@@ -139,9 +139,10 @@ function UpdateGeneralInfo()
 
         local function isnan(x) return x ~= x end
 
-        if g_lastKnownPlayerLevel>0 then
-            togci['Level'] = round(g_lastKnownPlayerLevel,3)
-        end
+		local level = getLastKnownLevel()
+		if level>0 then
+			togci['Level'] = round(level,3)
+		end
 
         if not togci['Guild Name'] or not togci['Guild Rank'] or true then
             --print(g_lastKnownGuildInfo)
@@ -164,7 +165,19 @@ function UpdateContainerInfo()
 
 end
 
+
 g_lastKnownPlayerLevel = -1
+function getLastKnownLevel()
+	local calclevel, baselevel = getDecimalPlayerLevel()
+
+	if calclevel and type(calclevel)=='number' and calclevel>=g_lastKnownPlayerLevel then
+		g_lastKnownPlayerLevel = calclevel
+	end
+
+	return g_lastKnownPlayerLevel
+end
+
+
 g_lastKnownGuildInfo = {"","",""}
 
 g_needEchoedCharacterInfo = true
@@ -178,11 +191,7 @@ function Character_OnUpdate()
 
     local guildName, guildRankName, guildRankIndex = GetGuildInfo("player");
 
-    ----print("Character_OnUpdate")
-    if not UnitAffectingCombat('player') and calclevel and type(calclevel)=='number' and calclevel>=g_lastKnownPlayerLevel and calclevel<2147483647 and xtimer("g_lastKnownPlayerLevel",90) then
-        g_lastKnownPlayerLevel = calclevel
-
-    elseif not UnitAffectingCombat('player') and guildName and guildRankName and guildRankIndex and xtimer("g_lastKnownGuildInfo",120) then
+    if not UnitAffectingCombat('player') and guildName and guildRankName and guildRankIndex and xtimer("g_lastKnownGuildInfo",120) then
         g_lastKnownGuildInfo = {guildName, guildRankName, guildRankIndex}
         --tprint(g_lastKnownGuildInfo)
         --print( g_lastKnownGuildInfo[1], g_lastKnownGuildInfo[2] )
