@@ -18,7 +18,7 @@ function tprint (tbl, indent)
 			print(formatting)
 			tprint(v, indent+1)
 		elseif type(v) == 'boolean' then
-			print(formatting .. tostring(v))      
+			print(formatting .. tostring(v))
 		else
 			print(formatting .. tostring(v))
 		end
@@ -29,58 +29,58 @@ end
 function initTable(itable,...)
 	--print(itable)
 	--print(type(itable))
-	
+
 	if "table"~=type(itable) then
 		error("initTable(itable,...) was not passed a table")
 	end
 
 	local n = select("#", ...)
-	
+
 	if n>=1 and not itable[select(1,...)] then
 		itable[select(1,...)] = {}
 	end
-	
+
 	if n>=2 and not itable[select(1,...)][select(2,...)] then
 		itable[select(1,...)][select(2,...)] = {}
 	end
-	
+
 	if n>=3 and not itable[select(1,...)][select(2,...)][select(3,...)] then
 		itable[select(1,...)][select(2,...)][select(3,...)] = {}
 	end
-	
+
 	if n>=4 and not itable[select(1,...)][select(2,...)][select(3,...)][select(4,...)] then
 		itable[select(1,...)][select(2,...)][select(3,...)][select(4,...)] = {}
 	end
-	
+
 	if n>=5 and not itable[select(1,...)][select(2,...)][select(3,...)][select(4,...)][select(5,...)] then
 		itable[select(1,...)][select(2,...)][select(3,...)][select(4,...)][select(5,...)] = {}
 	end
-	
+
 	if n>=6 and not itable[select(1,...)][select(2,...)][select(3,...)][select(4,...)][select(5,...)][select(6,...)] then
 		itable[select(1,...)][select(2,...)][select(3,...)][select(4,...)][select(5,...)][select(6,...)] = {}
 	end
-	
+
 	if n>=7 and not itable[select(1,...)][select(2,...)][select(3,...)][select(4,...)][select(5,...)][select(6,...)][select(7,...)] then
 		itable[select(1,...)][select(2,...)][select(3,...)][select(4,...)][select(5,...)][select(6,...)][select(7,...)] = {}
 	end
-	
+
 	if n>=8 and not itable[select(1,...)][select(2,...)][select(3,...)][select(4,...)][select(5,...)][select(6,...)][select(7,...)][select(8,...)] then
 		itable[select(1,...)][select(2,...)][select(3,...)][select(4,...)][select(5,...)][select(6,...)][select(7,...)][select(8,...)] = {}
 	end
-	
+
 	if n>=9 and not itable[select(1,...)][select(2,...)][select(3,...)][select(4,...)][select(5,...)][select(6,...)][select(7,...)][select(8,...)][select(9,...)] then
 		itable[select(1,...)][select(2,...)][select(3,...)][select(4,...)][select(5,...)][select(6,...)][select(7,...)][select(8,...)][select(9,...)] = {}
 	end
-	
+
 	--[[
 	for i=1, n do
 		local arg = select(i, ...)
-		
+
 		print(arg)
 		itable
 	end
 	]]--
-	
+
 end
 
 
@@ -112,59 +112,59 @@ end
 
 
  function ColorText(red,green,blue)
- 
+
 	-- string representation of colors converted
 	if red and not green and not blue then
-	
+
 		if string.lower(red) == "orange" then
 			red = 255
 			green = 102
 			blue = 0
-			
+
 		elseif string.lower(red) == "maroon" then
 			red = 102
 			green = 0
 			blue = 0
-			
-			
+
+
 		elseif string.lower(red) == "poor" then
 			red = 157
 			green = 157
 			blue = 157
-			
+
 		elseif string.lower(red) == "common" then
 			red = 255
 			green = 255
 			blue = 255
-			
+
 		elseif string.lower(red) == "uncommon" then
 			red = 30
 			green = 255
 			blue = 0
-			
+
 		elseif string.lower(red) == "rare" then
 			red = 0
 			green = 112
 			blue = 221
-			
+
 		elseif string.lower(red) == "epic" then
 			red = 163
 			green = 53
 			blue = 238
-			
+
 		elseif string.lower(red) == "legendary" then
 			red = 255
 			green = 128
 			blue = 0
-			
+
 		elseif string.lower(red) == "artifact" or string.lower(red) == "heirloom" then
 			red = 230
 			green = 204
 			blue = 128
-			
+
 		end
 	end
- 
+
 	local red = tonumber( red )
 	local green = tonumber( green )
 	local blue = tonumber( blue )
@@ -199,21 +199,21 @@ function round(fnumber,rnum)
 	if not fnumber then return fnumber end
 	if not rnum then rnum=0 end
 	local rnum = -1 * rnum
-	
+
 	local divnum=10^rnum
 	local returnval
 	returnval=fnumber/divnum
 	returnval=floor(returnval)
 	returnval=returnval*divnum
 	returnval=tonumber(returnval)
-	
+
 	return (returnval)
 end
 
 
 
 function ScrollToBottom()
-    DEFAULT_CHAT_FRAME:ScrollToBottom() 
+    DEFAULT_CHAT_FRAME:ScrollToBottom()
 end
 
 
@@ -260,21 +260,21 @@ end
 function createColoredArgumentEventString(event,...)
 
 	local argN = select("#",...)
-	
-	local eventColor 
-	
+
+	local eventColor
+
 	if event=="COMBAT_LOG_EVENT_UNFILTERED" then
 		eventColor = ColorText(0.75,1,0.5)
 	else
 		eventColor = ColorText(0.5,0.5,1)
 	end
-	
-	local argString = eventColor .. event .. ColorText() .. " " 
-	
+
+	local argString = eventColor .. event .. ColorText() .. " "
+
 	for i = 1, argN do
 		argString = buildEventFinderString(argString,i,...)
 	end
-	
+
 	return argString
 
 end
@@ -284,17 +284,17 @@ end
 function buildEventFinderString(argString, index, ...)
 
 	local s = select(index,...)
-	
+
 	if index==1 and type(s)=='number' and strfind( argString, "COMBAT_LOG_EVENT" ) then
 		s=nil
 	end
-	
+
 	if s or type(s)=='boolean' then
 		return argString .. ColorText(255,0,0).."arg"..index.."="..ColorText() .. stringify(s) .. " "
 	else
 		return argString
 	end
-	
+
 end
 
 
@@ -313,7 +313,7 @@ function stringify(s)
 	else
 		return s
 	end
-	
+
 end
 
 ---------------------------------------------------------------------------------------------------
@@ -323,33 +323,33 @@ end
 function DisplayCharacterGold()
 	for serverName,serverData in pairs(CharacterRecord) do
 		local gold = 0
-		
+
 		local goldTable = {}
-		
+
 		for characterName,characterData in pairs(serverData) do
 			local cgold = characterData['GENERAL']['Gold']
 			gold = gold + cgold
 			--goldTable[characterName]=cgold
 			table.insert(goldTable,{name=characterName,gold=cgold})
 		end
-		
+
 		print("  " .. ColorText(255,102,0) .. serverName .. "  " .. ColorText(102,255,0) .. round(gold))
-		
-		
+
+
 		table.sort(goldTable,function(a,b) return a['gold']>b['gold'] end)
-		
+
 		--tprint(goldTable)
-		
+
 		for k, v in pairs(goldTable) do
 			local name = v['name']
 			local gold = v['gold']
 			print( "  " .. "  " .. name .. ColorText(1,1,0) .. " " .. round(gold) )
 		end
-		
+
 		for characterName,characterData in pairs(serverData) do
 			--print( "  " .. "  " .. characterName .. ColorText(1,0,0) .. " " .. round(characterData['GENERAL']['Gold']))
 		end
-		
+
 	end
 end
 
@@ -358,41 +358,41 @@ end
 --- /run DisplayCharacters()
 function DisplayCharacters()
     print(ColorText(255,102,0) .."Character Info:")
-    
+
     local function ColorCodeTimePassed(oldest)
         local blue = ColorText(0.1,1,1)
         local green = ColorText(0.1,1,0.1)
         local yellow = ColorText(1,1,0.1)
         local orange = ColorText(1,1,0.1)
         local red = ColorText(1,0.1,0.1)
-    
+
         local timepassed = time() - oldest[1]
         local oldestType = oldest[2]
-        
+
         if oldestType~='mailbox' then
             return red .. " check mailbox"
         end
-    
+
         if (timepassed < 10) then
             return blue .. " few seconds ago"
         elseif (timepassed < 90) then
             return blue .. round(timepassed) .. " seconds"
         end
-        
+
         local minutes = timepassed / 60.0
         if (minutes < 10) then
             return blue .. round(minutes,1) .. " minutes"
         elseif (minutes < 90) then
             return blue .. round(minutes,0) .. " minutes"
         end
-        
+
         local hours = minutes / 60.0
         if (hours < 10) then
             return blue .. round(hours,1) .. " hours"
         elseif (hours < 24*3) then
             return green .. round(hours,0) .. " hours"
         end
-        
+
         local days = hours / 24.0
         if (days < 10) then
             return yellow .. round(days,1) .. " days"
@@ -402,16 +402,16 @@ function DisplayCharacters()
             return red .. round(days,0) .. " days"
         end
     end
-    
+
     local function getEventTime(events,eventName)
         if events and events[eventName] and events[eventName]['time'] then
             return events[eventName]['time']
         end
     end
-   
+
     for serverName,serverData in pairs(CharacterRecord) do
         print("  " .. ColorText(255,102,0) .. serverName)
-        
+
         local sortedServerData = {}
         local sortedServerKeys = {}
         for characterName,characterData in pairs(serverData) do
@@ -420,16 +420,16 @@ function DisplayCharacters()
             local class = characterData['GENERAL']['Class']
             local guild = characterData['GENERAL']['Guild Name'] or "<NONE>"
             local race = characterData['GENERAL']['Race']
-            
+
             local events = characterData['EVENTS']
-            
+
             local oldest = {time(),""}
-            
+
             local logout = getEventTime(events,'PLAYER_LOGOUT')
             local enterWorld = getEventTime(events,'PLAYER_ENTERING_WORLD')
             local mailbox = getEventTime(events,'MAIL_CLOSED')
             --local bankframe = getEventTime(events,'BANKFRAME_CLOSED')
-            
+
             if logout and logout<oldest[1] then
                 oldest[1] = logout
                 oldest[2] = 'logout'
@@ -450,9 +450,9 @@ function DisplayCharacters()
             sortedServerData[ssd] = printString
             table.insert(sortedServerKeys,ssd)
         end
-        
+
         table.sort(sortedServerKeys,function(a,b) return a>b end)
-        
+
         for k,v in pairs(sortedServerKeys) do
             local toPrint = sortedServerData[v]
             print(toPrint)
@@ -465,32 +465,32 @@ end
 --- /run DisplayProfessions()
 function DisplayProfessions()
     print(ColorText(255,102,0) .."Profession Info:")
-        
+
     local function getProfessions(characterName,characterData)
         local fullname = characterData['GENERAL']['Full-Name']
         local level = characterData['GENERAL']['Level']
         local class = characterData['GENERAL']['Class']
         local guild = characterData['GENERAL']['Guild Name'] or "<NONE>"
         local race = characterData['GENERAL']['Race']
-    
+
         local professions = characterData['PROFESSIONS']
-        
+
         if not professions then
             return
         end
-        
+
         local profs = {}
-        
+
         for profession,value in pairs(professions) do
             local curr, _, cap = strsplit(" ", value)
-            
+
             local current = tonumber(curr)
-            
+
             if (current >= 75) then
                 table.insert(profs,{characterName,profession,current,tonumber(cap)})
             end
         end
-        
+
         if table.getn(profs)>0 then
             print("  " .. "  " .. characterName .. ColorText(1,0,0) .. " " .. round(level) .. ColorText(0,1,0) .. " " .. class)
 
@@ -499,15 +499,15 @@ function DisplayProfessions()
                 if (value[4] - value[3] <= 25) then
                     c = ColorText(1,0.5,1.0)
                 end
-                
+
                 print("  " .. "  " .. "  " .. ColorText(1,0.75,0.50) .. value[2] .. " " .. c .. value[3] .. "  ")
             end
         end
-    
+
         ---tprint(characterData['PROFESSIONS'])
-        ---print("  " .. "  " .. characterName .. ColorText(1,0,0) .. " " .. round(level) .. ColorText(0,1,0) .. " " .. class .. ColorText(0.5,1,0) ) 
+        ---print("  " .. "  " .. characterName .. ColorText(1,0,0) .. " " .. round(level) .. ColorText(0,1,0) .. " " .. class .. ColorText(0.5,1,0) )
     end
-   
+
     for serverName,serverData in pairs(CharacterRecord) do
         print("  " .. ColorText(255,102,0) .. serverName)
         for characterName,characterData in pairs(serverData) do
@@ -524,11 +524,11 @@ end
 function scanContainers()
 
 	-- numberOfSlots = GetContainerNumSlots(bagID);
-	
+
 	for bagID = 0, NUM_BAG_SLOTS do
 		scanContainer(bagID)
 	end
-	
+
 	--numberOfSlots = GetContainerNumSlots(BANK_CONTAINER);
 	--print(numberOfSlots)
 	scanContainer(BANK_CONTAINER)
@@ -545,7 +545,7 @@ function scanItems()
 	for i=1,65536 do
 		--itemId = GetInventoryItemID("unit", invSlot);
 		local itemId = GetInventoryItemID("player", i)
-		
+
 		processItemId(itemId,"{"..i.."}")
 	end
 end
@@ -554,10 +554,10 @@ end
 function scanContainer(bagID)
 	local numberOfSlots = GetContainerNumSlots(bagID);
 	--print(numberOfSlots)
-	
+
 	for slotID = 1, numberOfSlots do
 		local itemId = GetContainerItemID(bagID, slotID);
-		
+
 		processItemId(itemId, "[" .. bagID .. "," .. slotID .. "]")
 	end
 end
@@ -584,18 +584,18 @@ end
 
 
 function TableOfInventory()
-	
+
 	local inventoryTable = {}
-	
+
 		for i=1,39 do
 			local itemId = GetInventoryItemID("player", i)
-			
+
 			if itemId then
 				local itemLink = GetInventoryItemLink("player", i)
 				inventoryTable["{"..i.."}"] = { itemId=itemId , count=1, itemLink=itemLink }
 			end
 		end
-	
+
 	for bagID = 0, NUM_BAG_SLOTS do
 		local numberOfSlots = GetContainerNumSlots(bagID);
 		for slotID = 1, numberOfSlots do
@@ -606,7 +606,7 @@ function TableOfInventory()
 			end
 		end
 	end
-	
+
 	local bagID = BANK_CONTAINER
 		local numberOfSlots = GetContainerNumSlots(bagID);
 		for slotID = 1, numberOfSlots do
@@ -627,7 +627,7 @@ function TableOfInventory()
 			end
 		end
 	end
-	
+
 	-- reagent bank slots
 	local bagID = -3
 		local numberOfSlots = GetContainerNumSlots(bagID);
@@ -647,32 +647,32 @@ end
 function parseTableForHeirlooms()
 
 	local toInventory = TableOfInventory()
-	
+
 	local heirTable = {}
-	
+
 	local count = 0
-	
+
 	--tprint(toInventory)
-	
+
 	for k in pairs(toInventory) do
 		local data = toInventory[k]
 		--tprint(data)
 		local itemId = data.itemId
 		local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(itemId)
-		
+
 		if itemRarity==0 or itemRarity==1 or itemRarity==2 or itemRarity==3 or itemRarity==4 then
 			-- ignore
-			
+
 		else
 			--print( k .. "  " .. itemLink .. "   <" .. itemRarity .. ">" )
 			count = count + 1
 			heirTable[k] = itemName
-			
+
 		end
 	end
-	
+
 	--print("Heirlooms found: " .. ColorText(255,0,0) .. count .. ColorText())
-	
+
 	return heirTable, count
 
 end
@@ -691,33 +691,33 @@ function listGear()
 
 		if i ~= 4 then -- skip shirt
 			local iitemLink = GetInventoryItemLink("player", i)
-			
+
 			if iitemLink then
 				local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(iitemLink)
-			
+
 				table.insert(gearTable,{itemLink,itemLevel + itemRarity/10 , itemLevel})
 			end
 		end
-		
+
 	end
-	
-	
+
+
 	local function compare(a,b)
 		return a[2] > b[2]
 	end
-	
+
 	table.sort(gearTable,compare)
-	
-	
+
+
 	--tprint(gearTable)
-	
-	
+
+
 	for key,value in pairs(gearTable) do
-	
+
 		print("  " .. value[3] .. "  " .. value[1])
-	
+
 	end
-	
+
 	ScrollToBottom()
 
 end
@@ -745,7 +745,7 @@ function numberPartyInCombat()
 		local affectingCombat = UnitAffectingCombat(partyI);
 		if affectingCombat then
 			s = s + 1
-			
+
 			if who==nil then
 				who = GetUnitName(partyI,true)
 			else
@@ -753,19 +753,19 @@ function numberPartyInCombat()
 			end
 		end
 	end
-	
+
 	local partyI = "player"
 	local affectingCombat = UnitAffectingCombat(partyI);
 	if affectingCombat then
 			s = s + 1
-			
+
 			if who==nil then
 				who = GetUnitName(partyI,true)
 			else
 				who = who .. ", " .. GetUnitName(partyI,true)
 			end
 	end
-	
+
 	return s, who
 end
 
@@ -795,14 +795,14 @@ function whoHealer()
 			table.insert(who,partyI)
 		end
 	end
-	
+
 		local partyI = "player"
 		local role = UnitGroupRolesAssigned(partyI);
 		if "HEALER"==role then
 			s = s + 1
 			table.insert(who,partyI)
 		end
-	
+
 	return s, who
 end
 
@@ -820,14 +820,14 @@ function whoTank()
 			table.insert(who,partyI)
 		end
 	end
-	
+
 		local partyI = "player"
 		local role = UnitGroupRolesAssigned(partyI);
 		if "TANK"==role then
 			s = s + 1
 			table.insert(who,partyI)
 		end
-	
+
 	return s, who
 end
 
@@ -837,24 +837,24 @@ function GetNumMembers()
 
 	--[[
 	local members = GetNumRaidMembers();
-	
+
 	if members==nil then
 		members = -1
 	end
-	
+
 	local partyMembers = GetNumPartyMembers()
-	
+
 	if partyMembers==nil then
 		partyMembers = -1
 	end
-	
+
 	if members > partyMembers then
 		return members
 	else
 		return partyMembers
 	end
 	]]--
-	
+
 	return GetNumGroupMembers();
 
 end
@@ -877,37 +877,37 @@ function AutoPartyRaidTargetMarkers()
 		local partyI = "party"..i
 		AutoRaidTargetMarkMember(partyI)
 	end
-	
+
 		AutoRaidTargetMarkMember("player")
-	
+
 end
 
 
 
 function AutoRaidTargetMarkMember(memberID)
-	
+
 	if UnitExists(memberID) and not GetRaidTargetIndex(memberID) then
-	
+
 		local role = UnitGroupRolesAssigned(memberID);
-		
+
 		local name, realm = UnitName(memberID)
-		
+
 		local fullname = name.."-"..(realm or "null")
-		
+
 		local xname = "AutoRaidTargetMarkMember:"..fullname..":"..role
-		
+
 		if "TANK" == role and xtimer(xname,15*60) then
-		
+
 			SetRaidTarget(memberID,1)
-		
+
 		elseif "HEALER" == role and xtimer(xname,15*60) then
-		
+
 			SetRaidTarget(memberID,5)
-		
+
 		end
-	
+
 	end
-	
+
 end
 
 
@@ -916,17 +916,17 @@ end
 function CycleRaidTargetMarker(unit)
 
 	cycleRaidTargetMarkerIndex = cycleRaidTargetMarkerIndex or 1
-	
+
 	if UnitExists(unit) then
-	
+
 		SetRaidTarget(unit,cycleRaidTargetMarkerIndex)
-		
+
 		cycleRaidTargetMarkerIndex = 1 + cycleRaidTargetMarkerIndex
-		
+
 		if cycleRaidTargetMarkerIndex>6 then
 			cycleRaidTargetMarkerIndex = nil
 		end
-	
+
 	end
 
 end
@@ -943,31 +943,31 @@ function RepresentativeUnitPercentHealth(unitId,notExistCost,rangeCost,notFriend
 	deadCost = deadCost or               10000;
 	notExistCost = notExistCost or       100000;
 	notFriendlyCost = notFriendlyCost or 1000000;
-	
+
 	local exists = UnitExists(unitId);
 	if not exists then
 		return notExistCost;
 	end
-	
+
 	local cost = 0;
-	
+
 	local dead = UnitIsDead(unitId)
 	if dead then
 		cost = deadCost + cost
 	end
-	
+
 	local inRange, checkedRange = UnitInRange(unitId)
 	if not inRange and checkedRange then
 		cost = rangeCost + cost
 	end
-	
+
 	local friendly = UnitCanAssist("player", unitId)
 	if not friendly then
 		cost = notFriendlyCost + cost
 	end
-	
+
 	local percent = 100*UnitHealth(unitId) / UnitHealthMax(unitId);
-	
+
 	return percent + cost;
 end
 
@@ -978,23 +978,23 @@ end
 function LowestTeamHealth()
 
 	local lowest = RepresentativeUnitPercentHealth("player")
-	
+
 	for i=0,5 do
 		local unitId = "party"..i;
-		
+
 		ruph = RepresentativeUnitPercentHealth(unitId)
-		
+
 		lowest = math.min(lowest,ruph);
 	end
-	
+
 	for i=0,40 do
 		local unitId = "raid"..i;
-		
+
 		ruph = RepresentativeUnitPercentHealth(unitId)
-		
+
 		lowest = math.min(lowest,ruph);
 	end
-	
+
 	return lowest;
 end
 
@@ -1007,11 +1007,11 @@ end
 
 
 function zoneInfo()
-	
+
 	local zoneName = GetZoneText();
 	local subzone = GetSubZoneText();
 	local minimapzonetext = GetMinimapZoneText();
-	
+
 	return ( zoneName .. " | " .. subzone .. " | " .. minimapzonetext )
 end
 
@@ -1065,10 +1065,10 @@ function QuadSafeEndCinematic()
 	if xtimer("TripleSafeEndCinematic_3",2) then
 		return 3
 	end
-	
+
 	if xtimer("QuadSafeEndCinematic() StopCinematic()",3) then
 		print( "QuadSafeEndCinematic()  " .. stringify(InCinematic()) )
-		
+
 		StopCinematic()
 	end
 
@@ -1087,7 +1087,7 @@ function oom__wait(delay, func, ...)
 	if(type(delay)~="number" or type(func)~="function") then
 		return false;
 	end
-	
+
 	if(waitFrame == nil) then
 		waitFrame = CreateFrame("Frame","WaitFrame", UIParent);
 		waitFrame:SetScript("onUpdate",
@@ -1121,29 +1121,29 @@ function cycleGuildBankTab()
 	if not curTab then
 		curTab = 1
 	end
-	
+
 	if curTab==1 then
 		GuildBankTab1Button:Click()
-		
+
 	elseif curTab==2 then
 		GuildBankTab2Button:Click()
-		
+
 	elseif curTab==3 then
 		GuildBankTab3Button:Click()
-		
+
 	elseif curTab==4 then
 		GuildBankTab4Button:Click()
-		
+
 	elseif curTab==5 then
 		GuildBankTab5Button:Click()
-		
+
 	elseif curTab==6 then
 		GuildBankTab6Button:Click()
-		
+
 	end
-	
+
 	curTab = 1 + curTab
-	
+
 	if curTab>6 then
 		curTab = nil
 	end
@@ -1158,24 +1158,24 @@ end
 function printProfessions()
 
 	local prof1, prof2, archaeology, fishing, cooking, firstAid = GetProfessions();
-	
+
 	if not firstAid then
 		firstAid = ""
 	end
-	
+
 	if not archaeology then
 		archaeology = ""
 	end
-	
+
 	print(prof1 .. " " .. prof2 .. " " .. archaeology .. " " .. fishing .. " " .. cooking .. " " .. firstAid )
-	
+
 	local name, icon, skillLevel, maxSkillLevel, numAbilities, spelloffset, skillLine, skillModifier, specializationIndex, specializationOffset = GetProfessionInfo(prof1)
 	print(name .. " " .. skillLevel .. " " .. maxSkillLevel )
-	
-	
+
+
 	local name, icon, skillLevel, maxSkillLevel, numAbilities, spelloffset, skillLine, skillModifier, specializationIndex, specializationOffset = GetProfessionInfo(prof2)
 	print(name .. " " .. skillLevel .. " " .. maxSkillLevel )
-	
+
 end
 
 
@@ -1186,39 +1186,39 @@ function TableOfProfessions()
 	local profTable = {}
 
 	local prof1, prof2, archaeology, fishing, cooking, firstAid = GetProfessions();
-	
+
 	if prof1 then
 		local name, icon, skillLevel, maxSkillLevel, numAbilities, spelloffset, skillLine, skillModifier, specializationIndex, specializationOffset = GetProfessionInfo(prof1)
 		profTable[name] = skillLevel .. " / " .. maxSkillLevel
 	end
-	
+
 	if prof2 then
 		local name, icon, skillLevel, maxSkillLevel, numAbilities, spelloffset, skillLine, skillModifier, specializationIndex, specializationOffset = GetProfessionInfo(prof2)
 		profTable[name] = skillLevel .. " / " .. maxSkillLevel
 	end
-	
+
 	if archaeology then
 		local name, icon, skillLevel, maxSkillLevel, numAbilities, spelloffset, skillLine, skillModifier, specializationIndex, specializationOffset = GetProfessionInfo(archaeology)
 		profTable[name] = skillLevel .. " / " .. maxSkillLevel
 	end
-	
+
 	if fishing then
 		local name, icon, skillLevel, maxSkillLevel, numAbilities, spelloffset, skillLine, skillModifier, specializationIndex, specializationOffset = GetProfessionInfo(fishing)
 		profTable[name] = skillLevel .. " / " .. maxSkillLevel
 	end
-	
+
 	if cooking then
 		local name, icon, skillLevel, maxSkillLevel, numAbilities, spelloffset, skillLine, skillModifier, specializationIndex, specializationOffset = GetProfessionInfo(cooking)
 		profTable[name] = skillLevel .. " / " .. maxSkillLevel
 	end
-	
+
 	if firstAid then
 		local name, icon, skillLevel, maxSkillLevel, numAbilities, spelloffset, skillLine, skillModifier, specializationIndex, specializationOffset = GetProfessionInfo(firstAid)
 		profTable[name] = skillLevel .. " / " .. maxSkillLevel
 	end
-	
+
 	return profTable
-	
+
 --	if table.getn(profTable)>0 then
 --		return profTable
 --	else
@@ -1268,13 +1268,13 @@ end
 function PrintParentFrameList(frm)
 
 	local f = frm
-	
+
 	for i =1, 100 do
-	
+
 		if f then
 			print( i .. "  " .. ColorText(1,.5,.5) .. f:GetName() )
 		end
-		
+
 		if f:GetParent() then
 			f = f:GetParent()
 		else
@@ -1294,7 +1294,7 @@ function PrintChildFrame(frm,depth)
 	if not frm then
 		return
 	end
-	
+
 	if not frm:GetName() then
 		print( tostring(frm) .. "  " .. ColorText(0.5,1,0.5) .. select('#', frm:GetChildren() ) )
 		return
@@ -1303,11 +1303,11 @@ function PrintChildFrame(frm,depth)
 	if not depth then
 		depth = 0
 	end
-	
+
 	if depth > 2 then
 		return
 	end
-	
+
 	print( depth .. "  " .. ColorText(1,0.5,0.5) .. frm:GetName() .. ColorText() .. "  " .. ColorText(0.5,1,0.5) .. select('#', frm:GetChildren()) .. ColorText() )
 
 	PrintChildFrameR( depth, frm:GetChildren() )
@@ -1324,15 +1324,15 @@ function PrintChildFrameR(depth, ...)
 
 	local s = select("#",...)
 	--print("select# = " .. ColorText(0.5,0.5,1) .. s )
-	
+
 	for i = 1, s do
-	
+
 		local f = select(i,...)
-				
+
 		PrintChildFrame( f, depth+1 )
-		
+
 	end
-	
+
 end
 
 
@@ -1359,59 +1359,59 @@ function DidICompleteQuest(questid)
 	local questid = tonumber(questid)
 
 	local questtable = { GetQuestsCompleted() }
-	
+
 	--print(type(questtable))
-	
+
 	if questid then
 		print("Looking for Quest ID: " .. ColorText(0.5,0.5,1) .. questid)
 
 		for key1,value1 in pairs(questtable) do
-			--print( "key1 " .. key1 ) 
+			--print( "key1 " .. key1 )
 			for key2,value2 in pairs(value1) do
 				--print("key2 " ..key2)
-				
+
 				if key2 == questid then
 					print("Quest Completed: " .. ColorText(0.5,1,0.5).. key2)
 					return true
 				end
-				
+
 			end
 		end
-		
+
 		print("Quest Not found: " .. ColorText(1,0.5,0.5).. tostring(questid))
-	
+
 	else
-	
+
 		print("Displaying All Quests:")
-		
+
 		local questCount = 0
-		
+
 		local bigstring = ""
-		
+
 		for key1,value1 in pairs(questtable) do
 			for key2,value2 in pairs(value1) do
 				--print(key2)
-				
+
 				bigstring = bigstring .. " " .. key2
-				
+
 				if string.len(bigstring) > 255 then
 					print(bigstring)
 					bigstring = ""
 				end
-				
+
 				questCount = 1 + questCount
-				
+
 			end
 		end
-		
+
 		print( bigstring )
-		
+
 		print("Number Quests Completed: " .. ColorText(0.5,0.5,1) .. questCount)
-	
+
 	end
-	
+
 	ScrollToBottom()
-	
+
 end
 
 
@@ -1431,60 +1431,60 @@ function shareAllQuests(delay)
 	delay = delay or 0.075
 
 	print(ColorText(255,102,0).."Sharing All Quests...")
-	
+
 	local questGreenRange = UnitLevel("player") - GetQuestGreenRange()
 
 	local questTable = {}
 
 	local i = 1;
 	while true do
-		
+
 		if GetQuestLogTitle(i)==nil then
 			break
 		end
-		
+
 		local title, level, tag, header = GetQuestLogTitle(i);
-		
+
 		if not header and level >= questGreenRange then
-		
+
 			SelectQuestLogEntry(i);
-			
+
 			if GetQuestLogPushable() then
 				table.insert(questTable, {i,level,title} )
 				--print(i .. "  " .. level .. "  " .. title)
 			end
-			
+
 		end
-		
+
 		i = i + 1;
 	end
-	
-	
+
+
 	local function compare(a,b)
 		return a[2] > b[2]
 	end
-	
+
 	table.sort(questTable,compare)
-	
+
 	local j = 0
 	for key,value in pairs(questTable) do
 		local v_i = value[1]
 		local v_level = value[2]
 		local v_title = value[3]
-		
+
 		local title, level, tag, header = GetQuestLogTitle(v_i);
-		
+
 		print("  " .. v_level .. "  " .. v_title )
-		
+
 		local function delayShareQuest()
 			SelectQuestLogEntry(v_i);
 			QuestLogPushQuest();
 		end
-		
+
 		oom__wait(j,delayShareQuest)
 		j = delay + j
 	end
-	
+
 	ScrollToBottom()
 
 end
@@ -1511,38 +1511,38 @@ function ListQuestsByLevel()
             if not data[fuzzyLevel] then
                 data[fuzzyLevel] = {}
             end
-            
+
             local questObject = {}
             questObject['questTitle'] = questTitle
             questObject['level'] = level
             questObject['suggestedGroup'] = suggestedGroup
             questObject['header'] = lastHeader
-            
+
             table.insert(data[fuzzyLevel],questObject)
             keys[fuzzyLevel] = true
-        
+
             --DEFAULT_CHAT_FRAME:AddMessage(questTitle .. " [" .. level .. "] " .. questID)
             -- tprint(questObject)
         end
-        
+
         questIndex = questIndex + 1
     end
-    
+
     local levels = {}
-    
+
     for k,v in pairs(keys) do
         table.insert(levels,k)
     end
-    
+
     table.sort(levels,function(a,b) return a>b end)
 
     ----tprint(levels)
-    
+
     for k1,lvl in pairs(levels) do
         local color = GetQuestDifficultyColor(lvl)
 
         print(ColorText(color.r,color.g,color.b) .. "Level: " .. ColorText(200,200,200) .. lvl)
-        
+
         for k2,questObj in pairs(data[lvl]) do
             local questTitle = questObj['questTitle']
             local header = questObj['header']
@@ -1563,15 +1563,15 @@ function GetMountSpeed()
     if GetSpellInfo("Flight Master's License") then
         Flight_Masters_License = "Flight Master's License"
     end
-    
+
     if GetSpellInfo("Cold Weather Flying") then
         Cold_Weather_Flying = "Cold Weather Flying"
     end
-    
+
     if GetSpellInfo("Wisdom of the Four Winds") or GetSpellInfo("Grimoire of the Four Winds") then
         Wisdom_of_the_Four_Winds = "Wisdom of the Four Winds"
     end
-    
+
     maxRiding = nil
 
     if GetSpellInfo("Master Riding") then
@@ -1587,8 +1587,8 @@ function GetMountSpeed()
     else
         maxRiding = nil
     end
-    
-    return maxRiding, Flight_Masters_License, Cold_Weather_Flying, Wisdom_of_the_Four_Winds  
+
+    return maxRiding, Flight_Masters_License, Cold_Weather_Flying, Wisdom_of_the_Four_Winds
 end
 
 
@@ -1606,7 +1606,7 @@ function StealableBuffs()
     if not UnitExists("target") then
         return {}
     end
-    
+
     local function BuffIndexData(i)
         local buffName, _, _, _, _, _, expireTime, _, isStealable = UnitAura("target", i, "HELPFUL")
         return buffName, expireTime, isStealable
@@ -1620,7 +1620,7 @@ function StealableBuffs()
         local mult = 10^(idp or 0)
         return math.floor(num * mult + 0.5) / mult
     end
-    
+
     while buffName do
         if (isStealable == true) then
             if (expireTime) then
