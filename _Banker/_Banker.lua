@@ -131,19 +131,19 @@ end
 function BankerSlashHandler(msg,editbox,source)
 
 	msg = trim(msg)
-	
+
 	local lmsg = string.lower(msg)
-	
+
 	if string.len(msg)<=1 or lmsg=="help" or lmsg=="?" then
-	
+
 		print("Use "..ColorText(1,0,0).."/banker cloth]"..ColorText().." to search for various cloths")
-	
+
 	else
-        SendAddonMessage("_BankerSearch", msg, "GUILD")
-        DisplaySearchBanker(msg)
+		-- TODO: SendAddonMessage("_BankerSearch", msg, "GUILD")
+		DisplaySearchBanker(msg)
 
 	end
-	
+
 end
 
 
