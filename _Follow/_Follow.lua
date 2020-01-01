@@ -21,7 +21,6 @@ function Follow_OnLoad()
 	FollowFrame:RegisterEvent("CHAT_MSG_INSTANCE_CHAT");
 	FollowFrame:RegisterEvent("CHAT_MSG_INSTANCE_CHAT_LEADER");
 
-	FollowFrame:RegisterEvent("CHAT_MSG");
 	FollowFrame:RegisterEvent("CHAT_MSG_CHANNEL");
 
 	DEFAULT_CHAT_FRAME:AddMessage("Follow_OnLoad()")
