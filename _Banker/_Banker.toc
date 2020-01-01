@@ -1,4 +1,4 @@
-## Interface: 80000
+## Interface: 80205
 ## Title: _Banker
 ## Notes: For Recording Bank, Inventory, & Mail Data
 ## DefaultState: Enabled

@@ -1,4 +1,4 @@
-## Interface: 80000
+## Interface: 80205
 ## Title: _FriendsWithBenefits |cff660066(Beta)
 ## Author: Kizrak
 ## DefaultState: Disabled
