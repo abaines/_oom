@@ -27,8 +27,8 @@ mendpet:SetAttribute("macrotext", "#showtooltip \n/cast [pet] Mend Pet ; [target
 		</Scripts>
 	</Button>
 
-	
-	
+
+
 	<Button name="unbornvalkyr" inherits="SecureActionButtonTemplate">
 		<Scripts>
 			<OnLoad>

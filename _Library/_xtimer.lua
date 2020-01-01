@@ -7,15 +7,15 @@ function xtimer(timerName,timerDelay)
 	if not _xtimer_table_data then
 		_xtimer_table_data = {}
 	end
-	
+
 	if _xtimer_table_data[timerName]==nil then
 		_xtimer_table_data[timerName] = time()
 		return true
-		
+
 	elseif time() - _xtimer_table_data[timerName] > timerDelay then
 		_xtimer_table_data[timerName] = time()
 		return true
-		
+
 	end
 end
 
@@ -72,8 +72,8 @@ function addx(tnum)
   end
 
   while (true) do
-  
-    for xindex=1,xtimermaxindex do 
+
+    for xindex=1,xtimermaxindex do
       if xvarname[xindex] and xvarname[xindex]==tnum then
         return xindex
       elseif xvarname[xindex] then

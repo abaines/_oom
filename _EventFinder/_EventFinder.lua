@@ -40,14 +40,14 @@ function logic1(argString)
 	elseif strfind( argString , "Target needs to be in front of you" ) then
 		return
 	end
-	
-	
+
+
 	if strfind( argString , "Out of range" ) and not xtimer("EventFinder".."Out of range",2*60) then
 		return
 	elseif strfind( argString , "Target not in line of sight" ) and not xtimer("EventFinder".."Target not in line of sight",2*60) then
 		return
 	end
-	
+
 	return true
 end
 
@@ -55,29 +55,29 @@ end
 
 function logic2(argString)
 	local lArgString = string.lower(argString)
-	
+
 	if true then
 		return false
 	end
-	
+
 	if not strfind( argString, "raid" ) then
 		return false
-		
+
 	end
-	
+
 	if not strfind( argString, "UNIT_SPELLCAST_SUCCEEDED" ) then
 		return false
-		
+
 	end
-	
+
 	if strfind( argString, "Love Ray" ) then
 		return true
-		
+
 	end
-	
+
 	if strfind( argString, "Cascade of Roses" ) then
 		return true
-		
+
 	end
 
 	return false
@@ -125,13 +125,13 @@ end
 function logic5(argString)
 
 	local lArgString = string.lower(argString)
-	
+
 	if strfind(argString, "astranaar") or strfind(argString, "whisperwind grove") or strfind(argString, "ramakhen") or strfind(argString, "gadgetzan") or strfind(argString, "lor'danel") or strfind(argString, "nighthaven") or strfind(argString, "feathermoon stronghold") or strfind(argString, "the crossroads") then
 		return true
 	end
-	
+
 	return false
-	
+
 end
 
 
@@ -143,20 +143,20 @@ function EventFinder_OnEvent(self,event,...)
 	elseif strfind( event, "CHAT_MSG_" ) and not strfind( event, "CHAT_MSG_ADDON" ) then
 		--return
 	end
-	
+
 	local argString = createColoredArgumentEventString(event,...)
-    
+
     if strfind(argString, "_BankerSearch" ) then
         print(argString)
     end
-	
-	
+
+
 ---------------------------------------------------------------------------------------------------
-	
+
 	if false and strfind(event,"COMBAT_LOG_EVENT_") then
 
 		if select(2,...) == "SPELL_CAST_SUCCESS" then
-		
+
 			local caster = select(5,...)
 			local spell = select(13,...)
 			local receiver = stringify( select(9,...) )
@@ -164,24 +164,24 @@ function EventFinder_OnEvent(self,event,...)
 			print("caster="..caster.."  spell="..spell.."  receiver="..receiver)
 
 		end
-	
+
 	end
-	
-	
+
+
 	if event=="UNIT_SPELLCAST_SUCCEEDED" and "Love Ray"==stringify( select(2,...) ) then
 		if strfind( stringify( select(1,...) ) , "raid" ) then
 			local casterUnit = stringify( select(1,...) )
-			
+
 			local casterName = GetUnitName(casterUnit, true)
-			
+
 			print("LOVE RAY!! " .. ColorText(0,1,0) .. casterName .. ColorText() .. "  " .. argString)
-			
+
 			CycleRaidTargetMarker(casterUnit)
-			
+
 		end
 	end
-	
-	
+
+
 ---------------------------------------------------------------------------------------------------
 ------ Logic --- Logic --- Logic --- Logic --- Logic --- Logic --- Logic --- Logic --- Logic ------
 ---------------------------------------------------------------------------------------------------
@@ -190,27 +190,27 @@ function EventFinder_OnEvent(self,event,...)
 
 	if logic1(argString) then
 		logicText = ColorText(0,1,0) .. "1" .. ColorText() .. " "
-		
+
 	elseif logic2(argString) then
 		logicText = ColorText(0,1,0) .. "2" .. ColorText() .. " "
-		
+
 	elseif logic3(argString) then
 		logicText = ColorText(0,1,0) .. "3" .. ColorText() .. " "
-		
+
 	elseif logic4(argString) then
 		logicText = ColorText(0,1,0) .. "4" .. ColorText() .. " "
-		
+
 	elseif logic5(argString) then
 		logicText = ColorText(0,1,0) .. "5" .. ColorText() .. " "
-		
+
 	else
 		return
 	end
-	
+
 
 ---------------------------------------------------------------------------------------------------
 
-	
+
 	if xtimer(argString,60) then
 		--[[
 		if EventFinder_OnEvent_SpamGuard() then
@@ -236,7 +236,7 @@ function EventFinder_OnEvent_SpamGuard()
 
 	local numberGuards = 10
 	local guardResetTime = 120
-	
+
 	for i = 1, numberGuards do
 		if xtimer( "EventFinder_OnEvent_SpamGuard"..i , guardResetTime+i) then
 			return false
@@ -263,23 +263,23 @@ EventFinder_CinematicFrame_Hook = nil
 function EventFinder_OnUpdate()
 --[[
 	if InCinematic() then
-	
+
 		if xtimer("InCinematic()",10) then
 			print("InCinematic()")
-			
-			
+
+
 			if false then
 				StopCinematic()
 				print("StopCinematic()")
 			end
-			
+
 			if false and EventFinder_CinematicFrame_Hook~=nil then
 				EventFinder_CinematicFrame_Hook.closeDialog:Show();
 			end
-			
-			
+
+
 		end
-	
+
 	end
 ]]--
 
@@ -321,9 +321,9 @@ function CinematicOnShowHook(self, ...)
   if IsModifierKeyDown() then return end
   --print("Cinematic Canceled.")
   --CinematicFrame_CancelCinematic()
-  
+
   EventFinder_CinematicFrame_Hook = self
-  
+
   --self.closeDialog:Show();
 end
 
