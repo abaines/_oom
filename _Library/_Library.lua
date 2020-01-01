@@ -442,10 +442,10 @@ function DisplayCharacters()
                 oldest[1] = mailbox
                 oldest[2] = 'mailbox'
             end
-            
-            
-            local printString = "  " .. "  " .. characterName .. ColorText(1,0,0) .. " " .. round(level) .. ColorText(0,1,0) .. " " .. class .. ColorText(0.5,1,0) .. " " .. race .. ColorText(1,1,1) .. " " .. guild .. " " .. ColorCodeTimePassed(oldest) 
-            --print(printString) 
+
+
+            local printString = "  " .. "  " .. tostring(characterName) .. ColorText(1,0,0) .. " " .. tostring(round(level)) .. ColorText(0,1,0) .. " " .. tostring(class) .. ColorText(0.5,1,0) .. " " .. tostring(race) .. ColorText(1,1,1) .. " " .. tostring(guild) .. " " .. ColorCodeTimePassed(oldest)
+            --print(printString)
             local ssd = oldest[1]
             sortedServerData[ssd] = printString
             table.insert(sortedServerKeys,ssd)
