@@ -6,7 +6,7 @@
 		<Scripts>
 			<OnLoad>
 				EventFinderFrame:RegisterAllEvents();
-				RegisterAddonMessagePrefix('_BankerSearch');
+				C_ChatInfo.RegisterAddonMessagePrefix('_BankerSearch');
 			</OnLoad>
 			<OnEvent>
 				EventFinder_OnEvent(self,event,...);
