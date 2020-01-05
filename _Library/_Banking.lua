@@ -30,10 +30,10 @@ function getDecimalPlayerLevel()
 	local XP = UnitXP("player")
 	local XPMax = UnitXPMax("player")
 
-	local baselevel = UnitLevel("player") ;
-	local calclevel = baselevel + XP / XPMax ;
+	local baselevel = UnitLevel("player")
+	local calclevel = baselevel + (XP / XPMax)
 
-    return calclevel, baselevel
+	return calclevel, baselevel
 end
 
 
@@ -49,7 +49,7 @@ function TableOfGeneralCharacterInfo(table_charInfo)
 
 	local race, raceEn = UnitRace("player");
 
-	local calclevel, baselevel = round(getDecimalPlayerLevel(),3)
+	local calclevel, baselevel = getDecimalPlayerLevel()
 
 	table_charInfo["Class"] = localizedClass
 
