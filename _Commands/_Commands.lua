@@ -254,3 +254,57 @@ function SlashCmdList.OOMADDONAUTOSHIFTON(msg, editbox)
 	SetCVar("autoUnshift",1)
 end
 
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+------- Soulbound ------- Soulbound ------- Soulbound -------- Soulbound -------- Soulbound -------
+---------------------------------------------------------------------------------------------------
+
+
+-- semlar https://www.wowinterface.com/forums/showpost.php?s=dc51a67b7426c67a157da8004ba9e131&p=303943&postcount=5
+
+SLASH_OOMADDON_SOULBOUND1 = '/soulbound'
+function SlashCmdList.OOMADDON_SOULBOUND()
+	local tip = CreateFrame('GameTooltip', 'MailBagScantip', nil, 'GameTooltipTemplate')
+
+	local function scannerUpdate(frame)
+		print("scannerUpdate".. frame.size)
+		local name, bag = frame:GetName(), frame:GetID()
+		for j = 1, frame.size do
+			local itemButton = _G[name .. 'Item' .. j]
+			local slot = itemButton:GetID()
+			tip:SetOwner(UIParent,'ANCHOR_NONE')
+			tip:SetBagItem(bag, slot)
+
+			if SendMailFrame:IsVisible() then
+				print(tip:NumLines())
+				for t = 1, tip:NumLines() do
+					local str = _G['MailBagScantipTextLeft' .. t]
+					if str and (str:GetText() == ITEM_SOULBOUND or str:GetText() == ITEM_BIND_QUEST) then
+						itemButton.searchOverlay:Show()
+						break
+					elseif str then
+						print(str)
+					end
+				end
+			--else
+			--  itemButton.searchOverlay:Hide() -- execute this somewhere else when the mailframe closes
+			end
+		end
+	end
+
+	if not derpyglobal then
+		hooksecurefunc('ContainerFrame_Update', scannerUpdate)
+		print("OOMADDON_SOULBOUND")
+		derpyglobal = true
+	end
+end
+
+print("GLOBAL SPACE")
+SlashCmdList.OOMADDON_SOULBOUND()
+
