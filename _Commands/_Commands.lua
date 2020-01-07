@@ -146,6 +146,12 @@ function CommandHandler(msg, editbox, source)
 	end
 
 
+	if strfind(lmsg,"soulbound") or strfind(lmsg,"soul bound") then
+		global_oom_soulbound_hooker_toggle = not global_oom_soulbound_hooker_toggle
+		print('Soulbound hiding is ' .. (global_oom_soulbound_hooker_toggle and (ColorText(0,1,0)..'enabled') or (ColorText(1,0,0)..'disabled'))..ColorText().."." )
+		return
+	end
+
 
 
 	--[[
@@ -200,6 +206,8 @@ function PrintOOMHelpSlashCommands(topic)
     print("  " .. ColorText("orange") .. "/oom darkmoon bag " .. ColorText() .." lists all characters without Darkmoon Storage Box")
 
 	print("  " .. ColorText("orange") .. "/banker " .. ColorText(1,0,0) .. "<search>" .. ColorText() .." scan banker information for items matching search")
+
+	print("  " .. ColorText("orange") .. "/oom soulbound " .. ColorText() .." toggle soulbound search overlay always (not just mailbox)")
 
 	ScrollToBottom()
 end
@@ -265,6 +273,7 @@ end
 ------- Soulbound ------- Soulbound ------- Soulbound -------- Soulbound -------- Soulbound -------
 ---------------------------------------------------------------------------------------------------
 
+global_oom_soulbound_hooker_toggle = false
 
 -- semlar https://www.wowinterface.com/forums/showpost.php?s=dc51a67b7426c67a157da8004ba9e131&p=303943&postcount=5
 
@@ -278,7 +287,7 @@ local function OOMADDON_SOULBOUND_HOOKER()
 		tip:SetOwner(UIParent,'ANCHOR_NONE')
 		tip:SetBagItem(bag, slot)
 
-		if SendMailFrame:IsVisible() or MailFrame:IsVisible() then
+		if SendMailFrame:IsVisible() or MailFrame:IsVisible() or global_oom_soulbound_hooker_toggle then
 			for t = 1, tip:NumLines() do
 				local str = _G['MailBagScantipTextLeft' .. t]
 				if str and (str:GetText() == ITEM_SOULBOUND or str:GetText() == ITEM_BIND_QUEST) then
@@ -298,10 +307,9 @@ local function OOMADDON_SOULBOUND_HOOKER()
 		end
 	end
 
-	if not soulboundHookHooked then
+	if not global_oom_soulbound_Hook_Hooked then
 		hooksecurefunc('ContainerFrame_Update', scannerUpdate)
-		print("OOMADDON_SOULBOUND")
-		soulboundHookHooked = true
+		global_oom_soulbound_Hook_Hooked = true
 	end
 end
 
