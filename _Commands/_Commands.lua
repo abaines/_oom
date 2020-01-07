@@ -279,18 +279,20 @@ function SlashCmdList.OOMADDON_SOULBOUND()
 		tip:SetOwner(UIParent,'ANCHOR_NONE')
 		tip:SetBagItem(bag, slot)
 
-		for t = 1, tip:NumLines() do
-			local str = _G['MailBagScantipTextLeft' .. t]
-			if str and (str:GetText() == ITEM_SOULBOUND or str:GetText() == ITEM_BIND_QUEST) then
-				itemButton.searchOverlay:Show()
-				return
+		if SendMailFrame:IsVisible() or MailFrame:IsVisible() then
+			for t = 1, tip:NumLines() do
+				local str = _G['MailBagScantipTextLeft' .. t]
+				if str and (str:GetText() == ITEM_SOULBOUND or str:GetText() == ITEM_BIND_QUEST) then
+					itemButton.searchOverlay:Show()
+					return
+				end
 			end
 		end
 		itemButton.searchOverlay:Hide()
 	end
 
 	local function scannerUpdate(frame)
-		print("scannerUpdate".. frame.size)
+		--print("scannerUpdate  ".. frame.size .. "  " .. tostring(SendMailFrame:IsVisible()))
 		local name, bag = frame:GetName(), frame:GetID()
 		for j = 1, frame.size do
 			scanTipForSoulbound(bag,name,j)
