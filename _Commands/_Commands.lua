@@ -291,13 +291,9 @@ function SlashCmdList.OOMADDON_SOULBOUND()
 
 	local function scannerUpdate(frame)
 		print("scannerUpdate".. frame.size)
-		if SendMailFrame:IsVisible() or true then
-			local name, bag = frame:GetName(), frame:GetID()
-			for j = 1, frame.size do
-				scanTipForSoulbound(bag,name,j)
-			end
-		else
-			--  itemButton.searchOverlay:Hide() -- execute this somewhere else when the mailframe closes
+		local name, bag = frame:GetName(), frame:GetID()
+		for j = 1, frame.size do
+			scanTipForSoulbound(bag,name,j)
 		end
 	end
 
