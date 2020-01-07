@@ -268,8 +268,7 @@ end
 
 -- semlar https://www.wowinterface.com/forums/showpost.php?s=dc51a67b7426c67a157da8004ba9e131&p=303943&postcount=5
 
-SLASH_OOMADDON_SOULBOUND1 = '/soulbound'
-function SlashCmdList.OOMADDON_SOULBOUND()
+local function OOMADDON_SOULBOUND_HOOKER()
 	local tip = CreateFrame('GameTooltip', 'MailBagScantip', nil, 'GameTooltipTemplate')
 
 	local function scanTipForSoulbound(bag,name,j)
@@ -299,13 +298,12 @@ function SlashCmdList.OOMADDON_SOULBOUND()
 		end
 	end
 
-	if not derpyglobal then
+	if not soulboundHookHooked then
 		hooksecurefunc('ContainerFrame_Update', scannerUpdate)
 		print("OOMADDON_SOULBOUND")
-		derpyglobal = true
+		soulboundHookHooked = true
 	end
 end
 
-print("GLOBAL SPACE")
-SlashCmdList.OOMADDON_SOULBOUND()
+OOMADDON_SOULBOUND_HOOKER()
 
