@@ -283,9 +283,10 @@ function SlashCmdList.OOMADDON_SOULBOUND()
 			local str = _G['MailBagScantipTextLeft' .. t]
 			if str and (str:GetText() == ITEM_SOULBOUND or str:GetText() == ITEM_BIND_QUEST) then
 				itemButton.searchOverlay:Show()
-				break
+				return
 			end
 		end
+		itemButton.searchOverlay:Hide()
 	end
 
 	local function scannerUpdate(frame)
