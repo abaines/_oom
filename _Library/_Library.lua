@@ -415,40 +415,46 @@ function DisplayCharacters()
 		local sortedServerData = {}
 		local sortedServerKeys = {}
 		for characterName,characterData in pairs(serverData) do
-			local fullname = characterData['GENERAL']['Full-Name']
-			local level = characterData['GENERAL']['Level']
-			local class = characterData['GENERAL']['Class']
-			local guild = characterData['GENERAL']['Guild Name'] or "<NONE>"
-			local race = characterData['GENERAL']['Race']
+			if characterData and characterData['GENERAL'] then
+				local fullname = characterData['GENERAL']['Full-Name']
+				local level = characterData['GENERAL']['Level']
+				local class = characterData['GENERAL']['Class']
+				local guild = characterData['GENERAL']['Guild Name'] or "<NONE>"
+				local race = characterData['GENERAL']['Race']
 
-			local events = characterData['EVENTS']
+				local events = characterData['EVENTS']
 
-			local oldest = {time(),""}
+				local oldest = {time(),""}
 
-			local logout = getEventTime(events,'PLAYER_LOGOUT')
-			local enterWorld = getEventTime(events,'PLAYER_ENTERING_WORLD')
-			local mailbox = getEventTime(events,'MAIL_CLOSED')
-			--local bankframe = getEventTime(events,'BANKFRAME_CLOSED')
+				local logout = getEventTime(events,'PLAYER_LOGOUT')
+				local enterWorld = getEventTime(events,'PLAYER_ENTERING_WORLD')
+				local mailbox = getEventTime(events,'MAIL_CLOSED')
+				--local bankframe = getEventTime(events,'BANKFRAME_CLOSED')
 
-			if logout and logout<oldest[1] then
-				oldest[1] = logout
-				oldest[2] = 'logout'
+				if logout and logout<oldest[1] then
+					oldest[1] = logout
+					oldest[2] = 'logout'
+				end
+				if enterWorld and enterWorld<oldest[1] then
+					oldest[1] = enterWorld
+					oldest[2] = 'enterWorld'
+				end
+				if mailbox then
+					oldest[1] = mailbox
+					oldest[2] = 'mailbox'
+				end
+
+
+				local printString = "  " .. "  " .. tostring(characterName) .. ColorText(1,0,0) .. " " .. tostring(round(level)) .. ColorText(0,1,0) .. " " .. tostring(class) .. ColorText(0.5,1,0) .. " " .. tostring(race) .. ColorText(1,1,1) .. " " .. tostring(guild) .. " " .. ColorCodeTimePassed(oldest)
+				--print(printString)
+				local ssd = oldest[1]
+				sortedServerData[ssd] = printString
+				table.insert(sortedServerKeys,ssd)
+			else
+				local ssd = math.huge
+				sortedServerData[ssd] = "  " .. "  " .. characterName .. ColorText(1,0,0) .. " Missing data"
+				table.insert(sortedServerKeys,ssd)
 			end
-			if enterWorld and enterWorld<oldest[1] then
-				oldest[1] = enterWorld
-				oldest[2] = 'enterWorld'
-			end
-			if mailbox then
-				oldest[1] = mailbox
-				oldest[2] = 'mailbox'
-			end
-
-
-			local printString = "  " .. "  " .. tostring(characterName) .. ColorText(1,0,0) .. " " .. tostring(round(level)) .. ColorText(0,1,0) .. " " .. tostring(class) .. ColorText(0.5,1,0) .. " " .. tostring(race) .. ColorText(1,1,1) .. " " .. tostring(guild) .. " " .. ColorCodeTimePassed(oldest)
-			--print(printString)
-			local ssd = oldest[1]
-			sortedServerData[ssd] = printString
-			table.insert(sortedServerKeys,ssd)
 		end
 
 		table.sort(sortedServerKeys,function(a,b) return a>b end)
