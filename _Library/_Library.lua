@@ -357,107 +357,107 @@ end
 
 --- /run DisplayCharacters()
 function DisplayCharacters()
-    print(ColorText(255,102,0) .."Character Info:")
+	print(ColorText(255,102,0) .."Character Info:")
 
-    local function ColorCodeTimePassed(oldest)
-        local blue = ColorText(0.1,1,1)
-        local green = ColorText(0.1,1,0.1)
-        local yellow = ColorText(1,1,0.1)
-        local orange = ColorText(1,1,0.1)
-        local red = ColorText(1,0.1,0.1)
+	local function ColorCodeTimePassed(oldest)
+		local blue = ColorText(0.1,1,1)
+		local green = ColorText(0.1,1,0.1)
+		local yellow = ColorText(1,1,0.1)
+		local orange = ColorText(1,1,0.1)
+		local red = ColorText(1,0.1,0.1)
 
-        local timepassed = time() - oldest[1]
-        local oldestType = oldest[2]
+		local timepassed = time() - oldest[1]
+		local oldestType = oldest[2]
 
-        if oldestType~='mailbox' then
-            return red .. " check mailbox"
-        end
+		if oldestType~='mailbox' then
+			return red .. " check mailbox"
+		end
 
-        if (timepassed < 10) then
-            return blue .. " few seconds ago"
-        elseif (timepassed < 90) then
-            return blue .. round(timepassed) .. " seconds"
-        end
+		if (timepassed < 10) then
+			return blue .. " few seconds ago"
+		elseif (timepassed < 90) then
+			return blue .. round(timepassed) .. " seconds"
+		end
 
-        local minutes = timepassed / 60.0
-        if (minutes < 10) then
-            return blue .. round(minutes,1) .. " minutes"
-        elseif (minutes < 90) then
-            return blue .. round(minutes,0) .. " minutes"
-        end
+		local minutes = timepassed / 60.0
+		if (minutes < 10) then
+			return blue .. round(minutes,1) .. " minutes"
+		elseif (minutes < 90) then
+			return blue .. round(minutes,0) .. " minutes"
+		end
 
-        local hours = minutes / 60.0
-        if (hours < 10) then
-            return blue .. round(hours,1) .. " hours"
-        elseif (hours < 24*3) then
-            return green .. round(hours,0) .. " hours"
-        end
+		local hours = minutes / 60.0
+		if (hours < 10) then
+			return blue .. round(hours,1) .. " hours"
+		elseif (hours < 24*3) then
+			return green .. round(hours,0) .. " hours"
+		end
 
-        local days = hours / 24.0
-        if (days < 10) then
-            return yellow .. round(days,1) .. " days"
-        elseif (days < 20) then
-            return orange .. round(days,0) .. " days"
-        else -- days > 20
-            return red .. round(days,0) .. " days"
-        end
-    end
+		local days = hours / 24.0
+		if (days < 10) then
+			return yellow .. round(days,1) .. " days"
+		elseif (days < 20) then
+			return orange .. round(days,0) .. " days"
+		else -- days > 20
+			return red .. round(days,0) .. " days"
+		end
+	end
 
-    local function getEventTime(events,eventName)
-        if events and events[eventName] and events[eventName]['time'] then
-            return events[eventName]['time']
-        end
-    end
+	local function getEventTime(events,eventName)
+		if events and events[eventName] and events[eventName]['time'] then
+			return events[eventName]['time']
+		end
+	end
 
-    for serverName,serverData in pairs(CharacterRecord) do
-        print("  " .. ColorText(255,102,0) .. serverName)
+	for serverName,serverData in pairs(CharacterRecord) do
+		print("  " .. ColorText(255,102,0) .. serverName)
 
-        local sortedServerData = {}
-        local sortedServerKeys = {}
-        for characterName,characterData in pairs(serverData) do
-            local fullname = characterData['GENERAL']['Full-Name']
-            local level = characterData['GENERAL']['Level']
-            local class = characterData['GENERAL']['Class']
-            local guild = characterData['GENERAL']['Guild Name'] or "<NONE>"
-            local race = characterData['GENERAL']['Race']
+		local sortedServerData = {}
+		local sortedServerKeys = {}
+		for characterName,characterData in pairs(serverData) do
+			local fullname = characterData['GENERAL']['Full-Name']
+			local level = characterData['GENERAL']['Level']
+			local class = characterData['GENERAL']['Class']
+			local guild = characterData['GENERAL']['Guild Name'] or "<NONE>"
+			local race = characterData['GENERAL']['Race']
 
-            local events = characterData['EVENTS']
+			local events = characterData['EVENTS']
 
-            local oldest = {time(),""}
+			local oldest = {time(),""}
 
-            local logout = getEventTime(events,'PLAYER_LOGOUT')
-            local enterWorld = getEventTime(events,'PLAYER_ENTERING_WORLD')
-            local mailbox = getEventTime(events,'MAIL_CLOSED')
-            --local bankframe = getEventTime(events,'BANKFRAME_CLOSED')
+			local logout = getEventTime(events,'PLAYER_LOGOUT')
+			local enterWorld = getEventTime(events,'PLAYER_ENTERING_WORLD')
+			local mailbox = getEventTime(events,'MAIL_CLOSED')
+			--local bankframe = getEventTime(events,'BANKFRAME_CLOSED')
 
-            if logout and logout<oldest[1] then
-                oldest[1] = logout
-                oldest[2] = 'logout'
-            end
-            if enterWorld and enterWorld<oldest[1] then
-                oldest[1] = enterWorld
-                oldest[2] = 'enterWorld'
-            end
-            if mailbox then
-                oldest[1] = mailbox
-                oldest[2] = 'mailbox'
-            end
+			if logout and logout<oldest[1] then
+				oldest[1] = logout
+				oldest[2] = 'logout'
+			end
+			if enterWorld and enterWorld<oldest[1] then
+				oldest[1] = enterWorld
+				oldest[2] = 'enterWorld'
+			end
+			if mailbox then
+				oldest[1] = mailbox
+				oldest[2] = 'mailbox'
+			end
 
 
-            local printString = "  " .. "  " .. tostring(characterName) .. ColorText(1,0,0) .. " " .. tostring(round(level)) .. ColorText(0,1,0) .. " " .. tostring(class) .. ColorText(0.5,1,0) .. " " .. tostring(race) .. ColorText(1,1,1) .. " " .. tostring(guild) .. " " .. ColorCodeTimePassed(oldest)
-            --print(printString)
-            local ssd = oldest[1]
-            sortedServerData[ssd] = printString
-            table.insert(sortedServerKeys,ssd)
-        end
+			local printString = "  " .. "  " .. tostring(characterName) .. ColorText(1,0,0) .. " " .. tostring(round(level)) .. ColorText(0,1,0) .. " " .. tostring(class) .. ColorText(0.5,1,0) .. " " .. tostring(race) .. ColorText(1,1,1) .. " " .. tostring(guild) .. " " .. ColorCodeTimePassed(oldest)
+			--print(printString)
+			local ssd = oldest[1]
+			sortedServerData[ssd] = printString
+			table.insert(sortedServerKeys,ssd)
+		end
 
-        table.sort(sortedServerKeys,function(a,b) return a>b end)
+		table.sort(sortedServerKeys,function(a,b) return a>b end)
 
-        for k,v in pairs(sortedServerKeys) do
-            local toPrint = sortedServerData[v]
-            print(toPrint)
-        end
-    end
+		for k,v in pairs(sortedServerKeys) do
+			local toPrint = sortedServerData[v]
+			print(toPrint)
+		end
+	end
 end
 
 
