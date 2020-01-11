@@ -180,7 +180,7 @@ end
 
 g_lastKnownGuildInfo = {"","",""}
 
-g_needEchoedCharacterInfo = true
+g_needEchoedCharacterInfo = false
 
 function Character_OnUpdate()
     if not t_CharacterLoadTime then
@@ -204,10 +204,10 @@ function Character_OnUpdate()
 
     end
 
-    if g_needEchoedCharacterInfo and t_CharacterLoadTime and time()-t_CharacterLoadTime > 4 then
-        DisplayCharacters()
-        g_needEchoedCharacterInfo = false
-    end
+	if not g_needEchoedCharacterInfo and t_CharacterLoadTime and time()-t_CharacterLoadTime > 1.2 then
+		g_needEchoedCharacterInfo = true
+		DisplayCharacters()
+	end
 end
 
 
