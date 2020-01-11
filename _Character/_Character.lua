@@ -121,6 +121,25 @@ end
 
 
 
+function isFiniteNumber(object)
+	if object~=object then
+		return false,"object~=object"
+	end
+	local n = tonumber(object)
+	if n>=math.huge or math.huge<=n then
+		return false,"n>=math.huge"
+	end
+	if n<=-math.huge or -math.huge>=n then
+		return false,"n<=-math.huge"
+	end
+	local s = string.lower(tostring(n))
+	if string.match(s, "nan") then
+		return false,"nan"
+	end
+	local m = string.match(s, "%d*.?%d*")
+	return s==m,n
+end
+
 
 function UpdateGeneralInfo()
 	initializeCharacterRecord()
