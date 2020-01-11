@@ -144,34 +144,47 @@ end
 function UpdateGeneralInfo(cause)
 	initializeCharacterRecord()
 
-	if CharacterRecord and CharacterRecord[_CurrentRealm] and CharacterRecord[_CurrentRealm][_CurrentPlayerName] and CharacterRecord[_CurrentRealm][_CurrentPlayerName]["GENERAL"] then
-		local cr_cr_cpn_g = CharacterRecord[_CurrentRealm][_CurrentPlayerName]["GENERAL"]
-		local beforeLevel = cr_cr_cpn_g['Level']
+	local cr_cr_cpn_g = CharacterRecord[_CurrentRealm][_CurrentPlayerName]["GENERAL"]
+	cr_cr_cpn_g['beforeLevel'] = cr_cr_cpn_g['Level']
 
-		local togci = TableOfGeneralCharacterInfo(cr_cr_cpn_g)
-		local afterLevel = togci['Level']
+	local togci = TableOfGeneralCharacterInfo(cr_cr_cpn_g)
 
-		if beforeLevel and not afterLevel then
-			print("afterLevel",afterLevel,"beforeLevel",beforeLevel)
-			togci['Level'] = beforeLevel
-		end
-
-		local function isnan(x) return x ~= x end
-
-		local level = getLastKnownLevel()
-		if level>0 then
-			togci['Level'] = round(level,3)
-		end
-
-		if not togci['Guild Name'] or not togci['Guild Rank'] or true then
-			--print(g_lastKnownGuildInfo)
-
-			togci['Guild Name'] = g_lastKnownGuildInfo[1]
-			togci['Guild Rank'] = g_lastKnownGuildInfo[2]
-		end
-
-		CharacterRecord[_CurrentRealm][_CurrentPlayerName]["GENERAL"] = togci
+	if not togci['cause'] then
+		togci['cause'] = {}
 	end
+	table.insert(togci['cause'],"start:"..cause)
+
+	togci['afterLevel'] = togci['Level']
+
+	local function isnan(x) return x ~= x end
+
+	local lkLevel = tonumber( getLastKnownLevel() ) or -1
+	togci['getLastKnownLevel'] = lkLevel
+
+	if lkLevel and type(lkLevel) == "number" and tonumber(lkLevel) then
+		if lkLevel>0 and 0<lkLevel and lkLevel<math.huge and math.huge>lkLevel then
+			local finite,reason = isFiniteNumber(lkLevel)
+			if finite then
+				togci['Level'] = lkLevel
+				togci['_Level'] = tostring(lkLevel)
+			end
+		end
+	end
+
+	togci['Guild Name'] = g_lastKnownGuildInfo[1]
+	togci['Guild Rank'] = g_lastKnownGuildInfo[2]
+
+	CharacterRecord[_CurrentRealm][_CurrentPlayerName]["GENERAL"] = togci
+
+	if not togci['Level'] or type(togci['Level']) ~= "number" then
+		togci['Level'] = -900
+		togci['_Level'] = tostring(-900)
+	end
+
+	if not togci['cause'] then
+		togci['cause'] = {}
+	end
+	table.insert(togci['cause'],"end:"..cause)
 end
 
 
