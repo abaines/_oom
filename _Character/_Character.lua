@@ -123,36 +123,36 @@ end
 
 
 function UpdateGeneralInfo()
-    initializeCharacterRecord()
+	initializeCharacterRecord()
 
-    if CharacterRecord and CharacterRecord[_CurrentRealm] and CharacterRecord[_CurrentRealm][_CurrentPlayerName] and CharacterRecord[_CurrentRealm][_CurrentPlayerName]["GENERAL"] then
-        local cr_cr_cpn_g = CharacterRecord[_CurrentRealm][_CurrentPlayerName]["GENERAL"]
-        local beforeLevel = cr_cr_cpn_g['Level']
+	if CharacterRecord and CharacterRecord[_CurrentRealm] and CharacterRecord[_CurrentRealm][_CurrentPlayerName] and CharacterRecord[_CurrentRealm][_CurrentPlayerName]["GENERAL"] then
+		local cr_cr_cpn_g = CharacterRecord[_CurrentRealm][_CurrentPlayerName]["GENERAL"]
+		local beforeLevel = cr_cr_cpn_g['Level']
 
-        local togci = TableOfGeneralCharacterInfo(cr_cr_cpn_g)
-        local afterLevel = togci['Level']
+		local togci = TableOfGeneralCharacterInfo(cr_cr_cpn_g)
+		local afterLevel = togci['Level']
 
-        if beforeLevel and not afterLevel then
-            print("afterLevel",afterLevel,"beforeLevel",beforeLevel)
-            togci['Level'] = beforeLevel
-        end
+		if beforeLevel and not afterLevel then
+			print("afterLevel",afterLevel,"beforeLevel",beforeLevel)
+			togci['Level'] = beforeLevel
+		end
 
-        local function isnan(x) return x ~= x end
+		local function isnan(x) return x ~= x end
 
 		local level = getLastKnownLevel()
 		if level>0 then
 			togci['Level'] = round(level,3)
 		end
 
-        if not togci['Guild Name'] or not togci['Guild Rank'] or true then
-            --print(g_lastKnownGuildInfo)
+		if not togci['Guild Name'] or not togci['Guild Rank'] or true then
+			--print(g_lastKnownGuildInfo)
 
-            togci['Guild Name'] = g_lastKnownGuildInfo[1]
-            togci['Guild Rank'] = g_lastKnownGuildInfo[2]
-        end
+			togci['Guild Name'] = g_lastKnownGuildInfo[1]
+			togci['Guild Rank'] = g_lastKnownGuildInfo[2]
+		end
 
-        CharacterRecord[_CurrentRealm][_CurrentPlayerName]["GENERAL"] = togci
-    end
+		CharacterRecord[_CurrentRealm][_CurrentPlayerName]["GENERAL"] = togci
+	end
 end
 
 
