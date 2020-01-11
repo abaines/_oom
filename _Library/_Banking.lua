@@ -53,17 +53,6 @@ function TableOfGeneralCharacterInfo(table_charInfo)
 
 	table_charInfo["Class"] = localizedClass
 
-	if calclevel and calclevel>0 then
-		table_charInfo["Level"] = calclevel
-
-	elseif baselevel and baselevel>0 then
-		table_charInfo["Level"] = baselevel
-
-	else
-		print("calclevel:", calclevel )
-
-	end
-
 	if copper ~= 0 then
 		local gold = copper / 10000.0
 		table_charInfo["Gold"] = gold
