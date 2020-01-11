@@ -48,13 +48,13 @@ function Character_OnEvent(self,event,...)
 	cRecordTimeOfEvent(event)
 
 	if event=="PLAYER_LOGOUT" or event=="PLAYER_ENTERING_WORLD" then
-		UpdateGeneralInfo()
+		UpdateGeneralInfo(event)
 		UpdateProfessionInfo()
 	end
 
 	if event=="BANKFRAME_OPENED" or event=="PLAYERBANKSLOTS_CHANGED" or event=="PLAYERBANKBAGSLOTS_CHANGED" then
 		if BankFrameIsVisible() and xtimer("Character_OnEvent" .. event,3) then
-			UpdateGeneralInfo()
+			UpdateGeneralInfo(event)
 			UpdateContainerInfo()
 			UpdateHeirloomInfo()
 		end
@@ -141,7 +141,7 @@ function isFiniteNumber(object)
 end
 
 
-function UpdateGeneralInfo()
+function UpdateGeneralInfo(cause)
 	initializeCharacterRecord()
 
 	if CharacterRecord and CharacterRecord[_CurrentRealm] and CharacterRecord[_CurrentRealm][_CurrentPlayerName] and CharacterRecord[_CurrentRealm][_CurrentPlayerName]["GENERAL"] then
@@ -224,7 +224,7 @@ function Character_OnUpdate()
         --print( g_lastKnownGuildInfo[1], g_lastKnownGuildInfo[2] )
 
     elseif ( IsResting() or not UnitAffectingCombat('player') ) and xtimer("UpdateCharacterData",4*60) then
-        UpdateGeneralInfo()
+        UpdateGeneralInfo("OnUpdate")
 
     elseif ( IsResting() and not UnitAffectingCombat('player') ) and xtimer("UpdateProfessionInfo",3*60) then
         UpdateProfessionInfo()
