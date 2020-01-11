@@ -366,38 +366,3 @@ function printLowLevelItems()
 
 end
 
-
---- /run DarkmoonStorageBox()
-function DarkmoonStorageBox()
-    print(ColorText(255,102,0) .."Darkmoon Storage Box:")
-
-    for serverName,serverData in pairs(CharacterRecord) do
-        for characterName,characterData in pairs(serverData) do
-
-            local hasDarkmoonStorageBox = false
-
-            for bagIndex,bagData in pairs(characterData['CONTAINERS']) do
-                local bagName = bagData['Bag Name']
-
-                if bagName == "Darkmoon Storage Box" then
-                    hasDarkmoonStorageBox = true
-                end
-
-            end
-
-            local fullname = characterData['GENERAL']['Full-Name']
-            local level = characterData['GENERAL']['Level']
-            local class = characterData['GENERAL']['Class']
-
-
-            if hasDarkmoonStorageBox == false and level > 3.7 then
-                print(fullname .. ColorText(1,0,0) .. " " .. round(level) .. ColorText(0,1,0) .. " " .. class)
-            end
-
-        end
-    end
-
-end
-
-
-
