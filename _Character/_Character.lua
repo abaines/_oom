@@ -170,8 +170,16 @@ g_lastKnownPlayerLevel = -1
 function getLastKnownLevel()
 	local calclevel, baselevel = getDecimalPlayerLevel()
 
-	if calclevel and type(calclevel)=='number' and calclevel>=g_lastKnownPlayerLevel then
-		g_lastKnownPlayerLevel = calclevel
+	calclevel = tonumber(calclevel)
+
+	if tostring(calclevel) == "nan" or (calclevel ~= calclevel) then
+		-- ignore --- skip NAN!
+
+	elseif calclevel>0 and 0<calclevel and calclevel<math.huge and math.huge>calclevel then
+		if calclevel and type(calclevel)=='number' and calclevel>=g_lastKnownPlayerLevel then
+			g_lastKnownPlayerLevel = calclevel
+		end
+
 	end
 
 	return g_lastKnownPlayerLevel
