@@ -1,4 +1,4 @@
-## Interface: 80205
+## Interface: 80300
 ## Title: _Holiday |cff660066(Alpha)
 ## Author: Kizrak
 ## DefaultState: Disabled
