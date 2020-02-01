@@ -2,6 +2,9 @@
 /**
 !/.gitignore
 
+!/_Auction/
+!/_Auction/**
+
 !/_Banker/
 !/_Banker/**
 
