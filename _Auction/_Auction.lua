@@ -69,6 +69,7 @@ end
 --print(UIParent:GetChildren())
 
 
+--[[
 local x = 0
 for a,n in pairs(UIParent:GetChildren()) do
 	if x~=0 then
@@ -76,6 +77,7 @@ for a,n in pairs(UIParent:GetChildren()) do
 	end
 	x = 1 + x
 end
+]]--
 
 
 -- /fstack

@@ -86,7 +86,9 @@ function hookInviteUnit(playerName)
 	end
 end
 
+--[[
 hooksecurefunc("InviteUnit", hookInviteUnit)
+]]--
 
 
 
