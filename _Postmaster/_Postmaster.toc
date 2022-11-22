@@ -1,4 +1,4 @@
-## Interface: 80300
+## Interface: 100002
 ## Title: _Postmaster |cff006600(code development)
 ## Author: Kizrak
 ## DefaultState: Enabled

@@ -1,4 +1,4 @@
-## Interface: 80300
+## Interface: 100002
 ## Title: _SurvivalOfTheFittest |cff660066(Alpha)
 ## Author: Kizrak
 ## DefaultState: Enabled

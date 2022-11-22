@@ -1,4 +1,4 @@
-## Interface: 80300
+## Interface: 100002
 ## Title: _Auction |cff660066(Beta)
 ## Author: Kizrak
 ## DefaultState: Enabled
