@@ -5,7 +5,7 @@ function TableOfContainerInfo()
 	local table_bagData = {}
 
 	for bagID = 1 , NUM_BAG_SLOTS+NUM_BANKBAGSLOTS do
-		local numberOfSlots = GetContainerNumSlots(bagID);
+		local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
 		local invID = ContainerIDToInventoryID(bagID)
 		local itemId = GetInventoryItemID("player", invID);
 
@@ -238,12 +238,12 @@ function bagSizes()
 
 
 	for bagID = 0, NUM_BAG_SLOTS+NUM_BANKBAGSLOTS do
-		local numberOfSlots = GetContainerNumSlots(bagID);
+		local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
 		print(numberOfSlots)
 		--scanContainer(bagID)
 	end
 
-	local numberOfSlots = GetContainerNumSlots(BANK_CONTAINER);
+	local numberOfSlots = C_Container.GetContainerNumSlots(BANK_CONTAINER);
 	print(numberOfSlots)
 	--scanContainer(BANK_CONTAINER)
 
@@ -263,7 +263,7 @@ function forceful()
 	for bagID = 0, NUM_BAG_SLOTS+NUM_BANKBAGSLOTS do
 		for slotID = 0,40 do
 
-			local itemId = GetContainerItemID(bagID, slotID);
+			local itemId = C_Container.GetContainerItemID(bagID, slotID);
 
 			if (itemId) then
 
@@ -292,7 +292,7 @@ end
 function printItemStats()
 
 	for bagID = 0, NUM_BAG_SLOTS+NUM_BANKBAGSLOTS do
-		local numberOfSlots = GetContainerNumSlots(bagID);
+		local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
 
 		for slotID = 0, numberOfSlots do
 
@@ -324,7 +324,7 @@ function printLowLevelItems()
 	local leveltable = {}
 
 	for bagID = 0, NUM_BAG_SLOTS+NUM_BANKBAGSLOTS do
-		local numberOfSlots = GetContainerNumSlots(bagID);
+		local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
 
 		for slotID = 0, numberOfSlots do
 

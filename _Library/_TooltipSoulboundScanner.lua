@@ -65,7 +65,7 @@ end
 
 function scanNonSoulboundItems()
 	for bagID = -3 , NUM_BAG_SLOTS+NUM_BANKBAGSLOTS do
-		local numberOfSlots = GetContainerNumSlots(bagID);
+		local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
 		for slotID = 0, numberOfSlots do
 
 
