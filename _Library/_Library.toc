@@ -11,3 +11,4 @@ _Banking.lua
 _Buttons.xml
 _TooltipSoulboundScanner.lua
 _BattlePets.lua
+_BankScanning.lua
