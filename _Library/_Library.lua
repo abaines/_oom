@@ -593,14 +593,14 @@ function TableOfInventory()
 
 	local inventoryTable = {}
 
-		for i=1,39 do
-			local itemId = GetInventoryItemID("player", i)
+	for i=1,39 do
+		local itemId = GetInventoryItemID("player", i)
 
-			if itemId then
-				local itemLink = GetInventoryItemLink("player", i)
-				inventoryTable["{"..i.."}"] = { itemId=itemId , count=1, itemLink=itemLink }
-			end
+		if itemId then
+			local itemLink = GetInventoryItemLink("player", i)
+			inventoryTable["{"..i.."}"] = { itemId=itemId , count=1, itemLink=itemLink }
 		end
+	end
 
 	for bagID = 0, NUM_BAG_SLOTS do
 		local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
@@ -614,14 +614,14 @@ function TableOfInventory()
 	end
 
 	local bagID = BANK_CONTAINER
-		local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
-		for slotID = 1, numberOfSlots do
-			local itemId = C_Container.GetContainerItemID(bagID, slotID);
-			if itemId then
-				local texture, itemCount, locked, quality, readable, lootable, itemLink = C_Container.GetContainerItemInfo(bagID, slotID);
-				inventoryTable["[" .. bagID .. "," .. slotID .. "]"] = { itemId=itemId , count=itemCount, itemLink=itemLink }
-			end
+	local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
+	for slotID = 1, numberOfSlots do
+		local itemId = C_Container.GetContainerItemID(bagID, slotID);
+		if itemId then
+			local texture, itemCount, locked, quality, readable, lootable, itemLink = C_Container.GetContainerItemInfo(bagID, slotID);
+			inventoryTable["[" .. bagID .. "," .. slotID .. "]"] = { itemId=itemId , count=itemCount, itemLink=itemLink }
 		end
+	end
 
 	for bagID = NUM_BAG_SLOTS+1, NUM_BAG_SLOTS+NUM_BANKBAGSLOTS do
 		local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
@@ -636,14 +636,14 @@ function TableOfInventory()
 
 	-- reagent bank slots
 	local bagID = -3
-		local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
-		for slotID = 1, numberOfSlots do
-			local itemId = C_Container.GetContainerItemID(bagID, slotID);
-			if itemId then
-				local texture, itemCount, locked, quality, readable, lootable, itemLink = C_Container.GetContainerItemInfo(bagID, slotID);
-				inventoryTable["[" .. bagID .. "," .. slotID .. "]"] = { itemId=itemId , count=itemCount, itemLink=itemLink }
-			end
+	local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
+	for slotID = 1, numberOfSlots do
+		local itemId = C_Container.GetContainerItemID(bagID, slotID);
+		if itemId then
+			local texture, itemCount, locked, quality, readable, lootable, itemLink = C_Container.GetContainerItemInfo(bagID, slotID);
+			inventoryTable["[" .. bagID .. "," .. slotID .. "]"] = { itemId=itemId , count=itemCount, itemLink=itemLink }
 		end
+	end
 
 	return inventoryTable
 end
