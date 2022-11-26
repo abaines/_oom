@@ -66,6 +66,23 @@ end
 
 
 
+function createInventoryObject(containerIndex, slotIndex)
+	local texture, itemCount, locked, quality, readable, lootable, itemLink = C_Container.GetContainerItemInfo(containerIndex, slotIndex);
+	
+	local inventoryObj = {
+		itemId=itemId,
+		count=itemCount,
+		itemLink=itemLink,
+	}
+	
+	tprint(inventoryObj)
+
+	return inventoryObj
+end
+
+
+
+
 
 function TableOfInventory()
 	print("TableOfInventory()")
@@ -77,50 +94,59 @@ function TableOfInventory()
 
 		if itemId then
 			local itemLink = GetInventoryItemLink("player", i)
+			print("inv",itemLink)
 			inventoryTable["{"..i.."}"] = { itemId=itemId , count=1, itemLink=itemLink }
 		end
 	end
 
+	print("NUM_BAG_SLOTS",NUM_BAG_SLOTS)
 	for bagID = 0, NUM_BAG_SLOTS do
 		local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
 		for slotID = 1, numberOfSlots do
 			local itemId = C_Container.GetContainerItemID(bagID, slotID);
 			if itemId then
-				local texture, itemCount, locked, quality, readable, lootable, itemLink = C_Container.GetContainerItemInfo(bagID, slotID);
-				inventoryTable["[" .. bagID .. "," .. slotID .. "]"] = { itemId=itemId , count=itemCount, itemLink=itemLink }
+				local inventoryObj = createInventoryObject(bagID, slotID);
+				tprint(inventoryObj)
+				inventoryTable["[" .. bagID .. "," .. slotID .. "]"] = inventoryObj
 			end
 		end
 	end
 
+	print("Bank main")
 	local bagID = BANK_CONTAINER
 	local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
 	for slotID = 1, numberOfSlots do
 		local itemId = C_Container.GetContainerItemID(bagID, slotID);
 		if itemId then
-			local texture, itemCount, locked, quality, readable, lootable, itemLink = C_Container.GetContainerItemInfo(bagID, slotID);
-			inventoryTable["[" .. bagID .. "," .. slotID .. "]"] = { itemId=itemId , count=itemCount, itemLink=itemLink }
+			local inventoryObj = createInventoryObject(bagID, slotID);
+			tprint(inventoryObj)
+			inventoryTable["[" .. bagID .. "," .. slotID .. "]"] = inventoryObj
 		end
 	end
 
+	print("Bank containers")
 	for bagID = NUM_BAG_SLOTS+1, NUM_BAG_SLOTS+NUM_BANKBAGSLOTS do
 		local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
 		for slotID = 1, numberOfSlots do
 			local itemId = C_Container.GetContainerItemID(bagID, slotID);
 			if itemId then
-				local texture, itemCount, locked, quality, readable, lootable, itemLink = C_Container.GetContainerItemInfo(bagID, slotID);
-				inventoryTable["[" .. bagID .. "," .. slotID .. "]"] = { itemId=itemId , count=itemCount, itemLink=itemLink }
+				local inventoryObj = createInventoryObject(bagID, slotID);
+				tprint(inventoryObj)
+				inventoryTable["[" .. bagID .. "," .. slotID .. "]"] = inventoryObj
 			end
 		end
 	end
 
+	print("reagent")
 	-- reagent bank slots
 	local bagID = -3
 	local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
 	for slotID = 1, numberOfSlots do
 		local itemId = C_Container.GetContainerItemID(bagID, slotID);
 		if itemId then
-			local texture, itemCount, locked, quality, readable, lootable, itemLink = C_Container.GetContainerItemInfo(bagID, slotID);
-			inventoryTable["[" .. bagID .. "," .. slotID .. "]"] = { itemId=itemId , count=itemCount, itemLink=itemLink }
+			local inventoryObj = createInventoryObject(bagID, slotID);
+			tprint(inventoryObj)
+			inventoryTable["[" .. bagID .. "," .. slotID .. "]"] = inventoryObj
 		end
 	end
 

@@ -195,6 +195,10 @@ function GetTableSearchBanker(itemName)
             local count = itemInformation["count"]
             local itemLink = itemInformation["itemLink"]
             local id = itemInformation["itemId"]
+				
+				if not itemLink then
+					print(charName,loc,id)
+				end
 
             local llink = string.lower(itemLink)
 
