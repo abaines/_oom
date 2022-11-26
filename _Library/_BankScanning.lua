@@ -149,6 +149,37 @@ function TableOfInventory()
 end
 
 
+function string:startswith(start)
+	return self:sub(1, #start) == start
+end
+
+
+-- /run searchUnboundItems()
+function searchUnboundItems()
+	print("searchUnboundItems()")
+
+	local toi = TableOfInventory()
+
+	local output = {}
+
+	for k,v in pairs(toi) do
+		if not k:startswith("[-3,") then
+			local isBound = v['isBound']
+			if isBound==false then
+				local hyperlink = v['itemLink']
+				table.insert(output,{k,hyperlink,isBound})
+			end
+		end
+	end
+
+	table.sort(output, function (i1, i2) return i1[1] < i2[1] end)
+
+	for k,v in pairs(output) do
+		print(v[1],v[2],v[3])
+	end
+end
+
+
 
 function parseTableForHeirlooms()
 
