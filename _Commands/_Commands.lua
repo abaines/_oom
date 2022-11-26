@@ -308,7 +308,12 @@ local function OOMADDON_SOULBOUND_HOOKER()
 	end
 
 	if not global_oom_soulbound_Hook_Hooked then
-		hooksecurefunc('ContainerFrame_Update', scannerUpdate)
+
+		hooksecurefunc(ContainerFrameCombinedBags, "UpdateItems", scannerUpdate)
+		for _, containerFrame in ipairs(UIParent.ContainerFrames) do
+			hooksecurefunc(containerFrame, "UpdateItems", scannerUpdate)
+		end
+
 		global_oom_soulbound_Hook_Hooked = true
 	end
 end
