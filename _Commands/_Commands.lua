@@ -280,9 +280,10 @@ global_oom_soulbound_hooker_toggle = false
 local function OOMADDON_SOULBOUND_HOOKER()
 	local tip = CreateFrame('GameTooltip', 'MailBagScantip', nil, 'GameTooltipTemplate')
 
-	local function scanTipForSoulbound(bag,name,j)
-		local nameItemJ = name .. 'Item' .. j
+	local function scanTipForSoulbound(bag,name,index)
+		local nameItemJ = name .. 'Item' .. index
 		local itemButton = _G[nameItemJ]
+		print(bag,name,index,nameItemJ,itemButton)
 		local slot = itemButton:GetID()
 		tip:SetOwner(UIParent,'ANCHOR_NONE')
 		tip:SetBagItem(bag, slot)
@@ -302,14 +303,14 @@ local function OOMADDON_SOULBOUND_HOOKER()
 	local function scannerUpdate(frame)
 		--print("scannerUpdate  ".. frame.size .. "  " .. tostring(SendMailFrame:IsVisible()))
 		local name, bag = frame:GetName(), frame:GetID()
-		for j = 1, frame.size do
-			scanTipForSoulbound(bag,name,j)
+		for index = 1, frame.size do
+			scanTipForSoulbound(bag,name,index)
 		end
 	end
 
 	if not global_oom_soulbound_Hook_Hooked then
 
-		hooksecurefunc(ContainerFrameCombinedBags, "UpdateItems", scannerUpdate)
+		--hooksecurefunc(ContainerFrameCombinedBags, "UpdateItems", scannerUpdate)
 		for _, containerFrame in ipairs(UIParent.ContainerFrames) do
 			hooksecurefunc(containerFrame, "UpdateItems", scannerUpdate)
 		end
