@@ -308,9 +308,36 @@ local function OOMADDON_SOULBOUND_HOOKER()
 		end
 	end
 
+	local function scannerUpdateCombinedBagSlot(bagID,slotID)
+		local itemID = C_Container.GetContainerItemID(bagID, slotID);
+		if itemID then
+			local inventoryObj = createInventoryObject(bagID, slotID);
+			local isBound = inventoryObj['isBound']
+
+			local itemFrameName = "ContainerFrame" .. bagID .. "Item" .. slotID
+			local itemFrameButton = _G[itemFrameName]
+
+			print(bagID, slotID, inventoryObj['itemLink'], inventoryObj['isBound'], itemFrameButton)
+		end
+	end
+
+	local function scannerUpdateCombined(frame)
+		local name, bag = frame:GetName(), frame:GetID()
+		print("scannerUpdateCombined()",name,bag)
+
+		-- character inventory
+		for bagID = 0, NUM_BAG_SLOTS do
+			local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
+			for slotID = 1, numberOfSlots do
+				scannerUpdateCombinedBagSlot(bagID,slotID)
+			end
+		end
+	end
+
 	if not global_oom_soulbound_Hook_Hooked then
 
-		--hooksecurefunc(ContainerFrameCombinedBags, "UpdateItems", scannerUpdate)
+		hooksecurefunc(ContainerFrameCombinedBags, "UpdateItems", scannerUpdateCombined)
+
 		for _, containerFrame in ipairs(UIParent.ContainerFrames) do
 			hooksecurefunc(containerFrame, "UpdateItems", scannerUpdate)
 		end
