@@ -363,7 +363,5 @@ local function OOMADDON_SOULBOUND_HOOKER()
 	end
 end
 
---[[
 OOMADDON_SOULBOUND_HOOKER()
-]]--
 
