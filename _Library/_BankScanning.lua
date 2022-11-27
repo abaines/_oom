@@ -70,6 +70,10 @@ function createInventoryObject(containerIndex, slotIndex)
 	-- iconFileID,stackCount,isLocked,quality,isReadable,hasLoot,hyperlink,isFiltered,hasNoValue,itemID,isBound
 	-- texture,itemCount,locked,quality,readable,lootable,itemLink
 	local itemInfo = C_Container.GetContainerItemInfo(containerIndex, slotIndex);
+	
+	if not itemInfo then
+		return {}
+	end
 
 	local inventoryObj = {
 		itemId=itemInfo.itemID,

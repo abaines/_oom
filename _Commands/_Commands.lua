@@ -283,7 +283,7 @@ local function OOMADDON_SOULBOUND_HOOKER()
 	local function scanTipForSoulbound(bag,name,index)
 		local nameItemJ = name .. 'Item' .. index
 		local itemButton = _G[nameItemJ]
-		print(bag,name,index,nameItemJ,itemButton)
+		--print(bag,name,index,nameItemJ,itemButton)
 		local slot = itemButton:GetID()
 		tip:SetOwner(UIParent,'ANCHOR_NONE')
 		tip:SetBagItem(bag, slot)
@@ -308,41 +308,44 @@ local function OOMADDON_SOULBOUND_HOOKER()
 		end
 	end
 
-	local function scannerUpdateCombinedBagSlot(bagID,slotID)
-		local itemID = C_Container.GetContainerItemID(bagID, slotID);
-		if itemID then
-			local inventoryObj = createInventoryObject(bagID, slotID);
-			local isBound = inventoryObj['isBound']
+	local function scannerUpdateCombinedBagSlot(bagID,slotID,numberOfSlots)
+		local inventoryObj = createInventoryObject(bagID, slotID);
+		local isBound = inventoryObj['isBound']
 
-			local itemFrameName = "ContainerFrame" .. (bagID+1) .. "Item" .. (slotID+1)
-			local itemFrameButton = _G[itemFrameName]
+		-- TODO figure out how 2FA bag locks affect logic
+		if bagID==0 then
+			slotOffset = 5
+		else
+			slotOffset = 1
+		end
+		local itemFrameName = "ContainerFrame" .. (bagID+1) .. "Item" .. (numberOfSlots-slotID+slotOffset)
 
-			if true then return end
+		local itemFrameButton = _G[itemFrameName]
 
-			print(bagID, slotID, inventoryObj['itemLink'], inventoryObj['isBound'], itemFrameButton)
+		--print(bagID, slotID, inventoryObj['itemLink'], inventoryObj['isBound'], itemFrameButton)
 
-			if not itemFrameButton then
-				return
-			end
+		if not itemFrameButton then
+			print(bagID, slotID, inventoryObj['itemLink'])
+			return
+		end
 
-			if not isBound then
-				itemFrameButton.searchOverlay:Hide()
-			else
-				itemFrameButton.searchOverlay:Show()
-			end
+		if not isBound then
+			itemFrameButton.searchOverlay:Hide()
+		else
+			itemFrameButton.searchOverlay:Show()
 		end
 	end
 
 	local function scannerUpdateCombined(frame)
 		if true or SendMailFrame:IsVisible() or MailFrame:IsVisible() or global_oom_soulbound_hooker_toggle then
 			local frameName, frameID = frame:GetName(), frame:GetID()
-			print("scannerUpdateCombined()",frameName,frameID)
+			--print("scannerUpdateCombined()",frameName,frameID)
 
 			-- character inventory
 			for bagID = 0, NUM_BAG_SLOTS do
 				local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
 				for slotID = 1, numberOfSlots do
-					scannerUpdateCombinedBagSlot(bagID,slotID)
+					scannerUpdateCombinedBagSlot(bagID,slotID,numberOfSlots)
 				end
 			end
 		end
