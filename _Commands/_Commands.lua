@@ -328,12 +328,12 @@ local function OOMADDON_SOULBOUND_HOOKER()
 			print(bagID, slotID, inventoryObj['itemLink'])
 			return
 		end
-		
+
 		if not featureEnabled then
 			itemFrameButton.searchOverlay:Hide()
 			return
 		end
-		
+
 		if not inventoryObj or not inventoryObj['itemLink'] then
 			itemFrameButton.searchOverlay:Hide()
 			return
@@ -355,9 +355,11 @@ local function OOMADDON_SOULBOUND_HOOKER()
 	end
 
 	local function scannerUpdateCombined(frame)
-		local featureEnabled = SendMailFrame:IsVisible() or MailFrame:IsVisible() or global_oom_soulbound_hooker_toggle
+		local SMFV = ScrappingMachineFrame and ScrappingMachineFrame:IsVisible()
+		local AHFV = AuctionHouseFrame and AuctionHouseFrame:IsVisible()
+		local featureEnabled = SMFV or SendMailFrame:IsVisible() or MailFrame:IsVisible() or global_oom_soulbound_hooker_toggle or AHFV
 		local frameName, frameID = frame:GetName(), frame:GetID()
-		local invert = false
+		local invert = SMFV
 		--print("scannerUpdateCombined()",frameName,frameID)
 
 		-- character inventory
