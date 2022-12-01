@@ -308,7 +308,7 @@ local function OOMADDON_SOULBOUND_HOOKER()
 		end
 	end
 
-	local function scannerUpdateCombinedBagSlot(bagID,slotID,numberOfSlots,featureEnabled)
+	local function scannerUpdateCombinedBagSlot(bagID,slotID,numberOfSlots,featureEnabled, invert)
 		local inventoryObj = createInventoryObject(bagID, slotID);
 		local isBound = inventoryObj['isBound']
 
@@ -328,24 +328,43 @@ local function OOMADDON_SOULBOUND_HOOKER()
 			print(bagID, slotID, inventoryObj['itemLink'])
 			return
 		end
-
-		if featureEnabled and isBound then
-			itemFrameButton.searchOverlay:Show()
-		else
+		
+		if not featureEnabled then
 			itemFrameButton.searchOverlay:Hide()
+			return
+		end
+		
+		if not inventoryObj or not inventoryObj['itemLink'] then
+			itemFrameButton.searchOverlay:Hide()
+			return
+		end
+
+		local function inverter(_show)
+			if _show then
+				itemFrameButton.searchOverlay:Show()
+			else
+				itemFrameButton.searchOverlay:Hide()
+			end
+		end
+
+		if isBound then
+			inverter(not invert)
+		else
+			inverter(invert)
 		end
 	end
 
 	local function scannerUpdateCombined(frame)
 		local featureEnabled = SendMailFrame:IsVisible() or MailFrame:IsVisible() or global_oom_soulbound_hooker_toggle
 		local frameName, frameID = frame:GetName(), frame:GetID()
+		local invert = false
 		--print("scannerUpdateCombined()",frameName,frameID)
 
 		-- character inventory
 		for bagID = 0, NUM_BAG_SLOTS do
 			local numberOfSlots = C_Container.GetContainerNumSlots(bagID);
 			for slotID = 1, numberOfSlots do
-				scannerUpdateCombinedBagSlot(bagID,slotID,numberOfSlots,featureEnabled)
+				scannerUpdateCombinedBagSlot(bagID,slotID,numberOfSlots,featureEnabled, invert)
 			end
 		end
 	end
