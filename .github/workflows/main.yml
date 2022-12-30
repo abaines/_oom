@@ -15,6 +15,9 @@ jobs:
         python -c "import sys; print(sys.version);"
         python -c "import os; print(os.getcwd()); print(os.listdir(os.curdir));"
 
+
+    - uses: lunarmodules/luacheck@v1.1.0
+
     - run: |
         python zipper.py
 
