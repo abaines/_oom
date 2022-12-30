@@ -20,6 +20,8 @@ extensions = [".toc",".xml",".lua"]
 
 folders_start_with = "_"
 
+output_zip_name = "_oom.zip"
+
 rootx = os.path.dirname(os.path.abspath(__file__))
 print( 'rootx', rootx )
 
@@ -55,7 +57,7 @@ all_files = getAllFiles(rootx)
 mod_files = filterStartingFolder(all_files,folders_start_with,extensions)
 print(mod_files)
 
-with zipfile.ZipFile("_oom.zip", 'w') as zout:
+with zipfile.ZipFile(output_zip_name, 'w') as zout:
    for f in mod_files:
       print("./"+f,f)
       zout.write("./"+f,f)
