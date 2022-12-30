@@ -25,6 +25,6 @@ jobs:
       with:
         if-no-files-found: error
         path: |
-          '_*/*.lua'
-          '_*/*.toc'
-          '_*/*.xml'
+          _*/*.lua
+          _*/*.toc
+          _*/*.xml
