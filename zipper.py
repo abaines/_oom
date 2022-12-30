@@ -52,8 +52,11 @@ def filterStartingFolder(directories, startsWith, extensions):
 all_files = getAllFiles(rootx)
 
 
+mod_files = filterStartingFolder(all_files,folders_start_with,extensions)
+print(mod_files)
 
-print(filterStartingFolder(all_files,folders_start_with,extensions))
-
-
+with zipfile.ZipFile("_oom.zip", 'w') as zout:
+   for f in mod_files:
+      print("./"+f,f)
+      zout.write("./"+f,f)
 
