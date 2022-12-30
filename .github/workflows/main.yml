@@ -16,7 +16,7 @@ jobs:
         python -c "import os; print(os.getcwd()); print(os.listdir(os.curdir));"
 
 
-    - uses: lunarmodules/luacheck@v1.1.0
+    - uses: davidcraig/action-wow-lint@v1.0.1
 
     - run: |
         python zipper.py
