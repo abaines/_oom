@@ -1,9 +1,0 @@
-## Interface: 100002
-## Title: _Auction |cff660066(Beta)
-## Author: Kizrak
-## DefaultState: Enabled
-## Notes: Helps with Auction House
-## Dependencies: _Library
-
-_Auction.lua
-_Auction.xml
