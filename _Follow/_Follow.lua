@@ -23,6 +23,8 @@ function Follow_OnLoad()
 
 	FollowFrame:RegisterEvent("CHAT_MSG_CHANNEL");
 
+	hooksecurefunc(FollowFrame, "InviteUnit", hookInviteUnit)
+
 	DEFAULT_CHAT_FRAME:AddMessage("Follow_OnLoad()")
 end
 
@@ -86,7 +88,6 @@ function hookInviteUnit(playerName)
 	end
 end
 
-hooksecurefunc("InviteUnit", hookInviteUnit)
 
 
 
