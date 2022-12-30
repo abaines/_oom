@@ -1,11 +1,6 @@
 -- Kizrak
 
 
-so we need to test for errors
-////////////
-##########
-@@@@@@@@@@
-so many types of errrors
 
 -- /fstack
 
