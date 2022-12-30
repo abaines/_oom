@@ -17,6 +17,8 @@ jobs:
 
 
     - uses: davidcraig/action-wow-lint@v1.0.1
+      with:
+        path-to-files: '**/*.lua'
 
     - run: |
         python zipper.py
