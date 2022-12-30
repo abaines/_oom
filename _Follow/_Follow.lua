@@ -23,7 +23,7 @@ function Follow_OnLoad()
 
 	FollowFrame:RegisterEvent("CHAT_MSG_CHANNEL");
 
-	hooksecurefunc(FollowFrame, "InviteUnit", hookInviteUnit)
+	hooksecurefunc(C_PartyInfo, "InviteUnit", hookInviteUnit)
 
 	DEFAULT_CHAT_FRAME:AddMessage("Follow_OnLoad()")
 end
