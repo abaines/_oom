@@ -2,6 +2,12 @@
 /**
 !/.gitignore
 
+!/.github/
+!/.github/workflows/
+!/.github/workflows/main.yml
+
+!/zipper.py
+
 !/_Auction/
 !/_Auction/**
 
