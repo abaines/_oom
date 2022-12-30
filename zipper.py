@@ -16,11 +16,12 @@ import traceback
 import json
 
 
+extensions = [".toc",".xml",".lua"]
+
+folders_start_with = "_"
+
 rootx = os.path.dirname(os.path.abspath(__file__))
 print( 'rootx', rootx )
-
-baseFolder = rootx[:rootx.rindex(os.sep)+1]
-print( 'baseFolder', baseFolder )
 
 
 def getAllFiles(directory):
@@ -28,21 +29,31 @@ def getAllFiles(directory):
    for path, subdirs, files in os.walk(directory):
       for name in files:
          f = os.path.join(path, name)
-         returns.append(f)
+         p = os.path.relpath(f, start=directory)
+         returns.append(p)
    return returns
 
-def endsWithAny(text,collection):
-   for c in collection:
-      if text.endswith(c):
-         return c
-   return False
+def filterStartingFolder(directories, startsWith, extensions):
+   def l(p):
+      if not p.startswith(startsWith):
+         return False
+
+      for extension in extensions:
+         if p.endswith(extension):
+            return True
+      
+      return False
+      
+
+   new_list = filter(l,directories)
+
+   return list(new_list)
+
+all_files = getAllFiles(rootx)
 
 
-# check os.name to determine interactive mode
-if os.name == 'nt':
-   input("Press Enter to continue...")
-elif os.name == 'posix':
-   print( os.listdir(os.pardir) )
-else:
-   raise Exception("unknown os.name",os.name)
+
+print(filterStartingFolder(all_files,folders_start_with,extensions))
+
+
 
