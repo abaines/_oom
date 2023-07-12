@@ -1,4 +1,4 @@
-## Interface: 100100
+## Interface: 100105
 ## Title: _Template |cff006600(code development)
 ## Author: Kizrak
 ## DefaultState: Enabled
