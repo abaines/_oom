@@ -28,6 +28,12 @@ function tprint (tbl, indent)
 	end
 end
 
+function printif(text)
+	if text then
+		print(text)
+	end
+end
+
 
 function initTable(itable,...)
 	--print(itable)
