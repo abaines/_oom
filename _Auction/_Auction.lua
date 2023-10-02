@@ -23,12 +23,56 @@ function Auction_OnEvent(self,event,...)
 
 	print(event)
 	tprint(arg1)
-	print(arg2)
-	print(arg3)
-	print(arg4)
-	print(arg5)
-	print(arg6)
+	printif(arg2)
+	printif(arg3)
+	printif(arg4)
+	printif(arg5)
+	printif(arg6)
+
+	if event=="COMMODITY_SEARCH_RESULTS_UPDATED" or event=="ITEM_SEARCH_RESULTS_UPDATED" then
+		SearchResultsUpdated(event,arg1)
+	end
+
+--[[
+	local itemID = arg1
+
+	print(itemID)
+	local num = C_AuctionHouse.GetNumCommoditySearchResults(itemID)
+	print(num)
+	for i = 1, C_AuctionHouse.GetNumCommoditySearchResults(itemID) do
+		local result = C_AuctionHouse.GetCommoditySearchResultInfo(itemID, i)
+		print(event, itemID, i, result.quantity, result.auctionID, result.unitPrice)
+	end
+]]--
 end
+
+function GetSearchResultsUpdatedNumber(event,itemID)
+	if event=="COMMODITY_SEARCH_RESULTS_UPDATED" then
+		return C_AuctionHouse.GetNumCommoditySearchResults(itemID)
+	elseif event=="ITEM_SEARCH_RESULTS_UPDATED" then
+		return C_AuctionHouse.GetNumItemSearchResults(itemID)
+	else
+		error("unexpected event type")
+	end
+end
+
+function SearchResultsUpdated(event,itemID)
+	local num = GetSearchResultsUpdatedNumber(event,itemID)
+	print("!! ".. num)
+
+end
+
+function Commodity(itemID)
+	print(itemID)
+	local num = C_AuctionHouse.GetNumCommoditySearchResults(itemID)
+	print(num)
+	for i = 1, C_AuctionHouse.GetNumCommoditySearchResults(itemID) do
+		local result = C_AuctionHouse.GetCommoditySearchResultInfo(itemID, i)
+		print(event, itemID, i, result.quantity, result.auctionID, result.unitPrice)
+	end
+end
+
+
 
 
 function Auction_OnUpdate(...)
