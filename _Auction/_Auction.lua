@@ -3,6 +3,8 @@ function Auction_OnLoad(...)
 	t_Auction_OnLoad = time()
 
 	AuctionFrame:RegisterEvent("AUCTION_HOUSE_NEW_RESULTS_RECEIVED");
+	AuctionFrame:RegisterEvent("COMMODITY_SEARCH_RESULTS_UPDATED");
+	AuctionFrame:RegisterEvent("ITEM_SEARCH_RESULTS_UPDATED");
 
 	print("Auction_OnLoad()")
 end
