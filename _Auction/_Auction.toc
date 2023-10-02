@@ -1,0 +1,9 @@
+## Interface: 100105
+## Title: _Auction
+## Author: Kizrak
+## DefaultState: Enabled
+## Notes: Basic Math for Auction House
+## Dependencies: _Library
+
+_Auction.lua
+_Auction.xml
