@@ -21,29 +21,17 @@ function Auction_OnEvent(self,event,...)
 	arg8 = select(8,...)
 	arg9 = select(9,...)
 
-	print(event)
-	tprint(arg1)
-	printif(arg2)
-	printif(arg3)
-	printif(arg4)
-	printif(arg5)
-	printif(arg6)
-
 	if event=="COMMODITY_SEARCH_RESULTS_UPDATED" or event=="ITEM_SEARCH_RESULTS_UPDATED" then
 		SearchResultsUpdated(event,arg1)
+	else
+		print(event)
+		tprint(arg1)
+		printif(arg2)
+		printif(arg3)
+		printif(arg4)
+		printif(arg5)
+		printif(arg6)
 	end
-
---[[
-	local itemID = arg1
-
-	print(itemID)
-	local num = C_AuctionHouse.GetNumCommoditySearchResults(itemID)
-	print(num)
-	for i = 1, C_AuctionHouse.GetNumCommoditySearchResults(itemID) do
-		local result = C_AuctionHouse.GetCommoditySearchResultInfo(itemID, i)
-		print(event, itemID, i, result.quantity, result.auctionID, result.unitPrice)
-	end
-]]--
 end
 
 function GetSearchResultsUpdatedNumber(event,itemID)
@@ -56,9 +44,17 @@ function GetSearchResultsUpdatedNumber(event,itemID)
 	end
 end
 
+function GetEventShort(event)
+	local b,f = string.find(event,"_")
+	local s = string.sub(event,0,f-1)
+	return string.sub(event,0,4)
+end
+
 function SearchResultsUpdated(event,itemID)
 	local num = GetSearchResultsUpdatedNumber(event,itemID)
-	print("!! ".. num)
+	local eventType = GetEventShort(event)
+
+	print("!! ".. num.."  "..eventType)
 
 end
 
