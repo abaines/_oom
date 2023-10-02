@@ -134,8 +134,12 @@ function logic5(argString)
 
 end
 
-function logic6(argString)
+function logic6(argString,event)
 	local lArgString = string.lower(argString)
+
+	if event=="AUCTION_HOUSE_NEW_RESULTS_RECEIVED" or event=="COMMODITY_SEARCH_RESULTS_UPDATED" or event=="ITEM_SEARCH_RESULTS_UPDATED" then
+		return false
+	end
 
 	if strfind(lArgString,"auction") or strfind(lArgString,"result") or strfind(lArgString,"receiv") or strfind(lArgString,"new") then
 		return true
@@ -211,7 +215,7 @@ function EventFinder_OnEvent(self,event,...)
 	elseif logic5(argString) then
 		logicText = ColorText(0,1,0) .. "5" .. ColorText() .. " "
 
-	elseif logic6(argString) then
+	elseif logic6(argString,event) then
 		logicText = ColorText(0,1,0) .. "6" .. ColorText() .. " "
 
 	else
