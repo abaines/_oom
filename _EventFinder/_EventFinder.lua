@@ -137,8 +137,8 @@ end
 function logic6(argString)
 	local lArgString = string.lower(argString)
 
-	if strfind(lArgString,"auction") then
-		return false
+	if strfind(lArgString,"auction") or strfind(lArgString,"result") or strfind(lArgString,"receiv") or strfind(lArgString,"new") then
+		return true
 	end
 end
 
