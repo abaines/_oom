@@ -133,7 +133,3 @@ function Percentile(data,sortedKeys,total,percentile)
 	return lastKey, desired, firstKey
 end
 
-
-function Auction_OnUpdate(...)
-
-end
