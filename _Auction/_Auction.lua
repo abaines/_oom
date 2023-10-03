@@ -73,14 +73,14 @@ function ProcessData(data)
 		return
 	end
 
-	DisplayData(data,sortedKeys)
+	DisplayAllData(data,sortedKeys)
 
 	print(ColorText(0,1,0.5)..total..ColorText())
 
-	DisplayPercentile(data,sortedKeys,total,0.0)
-	DisplayPercentile(data,sortedKeys,total,0.1)
-	DisplayPercentile(data,sortedKeys,total,0.5)
-	DisplayPercentile(data,sortedKeys,total,1.5)
+	DisplayPercentile(data,sortedKeys,total,0.01)
+	DisplayPercentile(data,sortedKeys,total,0.05)
+	DisplayPercentile(data,sortedKeys,total,0.10)
+	DisplayPercentile(data,sortedKeys,total,0.50)
 end
 
 function TextMoney(value)
@@ -91,7 +91,7 @@ function TextMoney(value)
 	return text
 end
 
-function DisplayData(data,sortedKeys)
+function DisplayAllData(data,sortedKeys)
 	for _,key in ipairs(sortedKeys) do
 		local count = data[key]
 		print(TextMoney(key).."  "..ColorText(0.5,0.5,1)..count)
