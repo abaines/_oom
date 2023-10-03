@@ -77,11 +77,15 @@ function ProcessData(data)
 
 	print("Total: " .. ColorText(0,1,0.5)..total..ColorText())
 
-	DisplayPercentile(data,sortedKeys,total,0.005)
-	DisplayPercentile(data,sortedKeys,total,0.014)
-	DisplayPercentile(data,sortedKeys,total,0.041)
-	DisplayPercentile(data,sortedKeys,total,0.116)
-	DisplayPercentile(data,sortedKeys,total,0.330)
+	DisplayPercentile(data,sortedKeys,total,0.0029)
+	DisplayPercentile(data,sortedKeys,total,0.0054)
+	DisplayPercentile(data,sortedKeys,total,0.0100)
+	DisplayPercentile(data,sortedKeys,total,0.0185)
+	DisplayPercentile(data,sortedKeys,total,0.0342)
+	DisplayPercentile(data,sortedKeys,total,0.0632)
+	DisplayPercentile(data,sortedKeys,total,0.1170)
+	DisplayPercentile(data,sortedKeys,total,0.2163)
+	DisplayPercentile(data,sortedKeys,total,0.4000)
 end
 
 function TextMoney(value)
@@ -103,7 +107,7 @@ function DisplayPercentile(data,sortedKeys,total,percentile)
 	local p, desired, lowestValue = Percentile(data,sortedKeys,total,percentile)
 
 	--print(desired)
-	print(ColorText(1,0,0)..string.format("%02d",percentile*100).."% Percentile " ..TextMoney(p).."   "..ColorText(0.5,0.5,1)..round(100*p/lowestValue,2).."%")
+	print(ColorText(1,0,0)..string.format("%05.2f",percentile*100).."% Percentile " ..TextMoney(p).."   "..ColorText(0.5,0.5,1)..round(100*p/lowestValue,2).."%")
 end
 
 
