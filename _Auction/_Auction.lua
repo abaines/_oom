@@ -21,7 +21,7 @@ function Auction_OnEvent(self,event,...)
 	local arg8 = select(8,...)
 	local arg9 = select(9,...)
 
-	if not xtimer("Auction_OnEvent",0.5) then
+	if not xtimer("Auction_OnEvent",0.75) then
 		return
 	end
 
@@ -75,7 +75,7 @@ function ProcessData(data)
 
 	--DisplayAllData(data,sortedKeys)
 
-	print(ColorText(0,1,0.5)..total..ColorText())
+	print("Total: " .. ColorText(0,1,0.5)..total..ColorText())
 
 	DisplayPercentile(data,sortedKeys,total,0.01)
 	DisplayPercentile(data,sortedKeys,total,0.05)
