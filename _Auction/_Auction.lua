@@ -69,21 +69,54 @@ function ProcessData(data)
 	end
 	table.sort(sortedKeys)
 
-	displayData(data,sortedKeys)
+	DisplayData(data,sortedKeys)
 
 	print(ColorText(0,1,0.5)..total..ColorText())
+
+	DisplayPercentile(data,sortedKeys,total,0.0)
+	DisplayPercentile(data,sortedKeys,total,0.1)
+	DisplayPercentile(data,sortedKeys,total,0.5)
 end
 
-function displayData(data,sortedKeys)
+function TextMoney(value)
+	local gold = math.floor(value/(100*100))
+	local silver = math.floor(value/(100)%100)
+
+	local text = ColorText(1,1,0.5)..string.format("%02d",gold).."  " .. ColorText(1,1,1)..string.format("%02d",silver)..ColorText()
+	return text
+end
+
+function DisplayData(data,sortedKeys)
 	for _,key in ipairs(sortedKeys) do
-		local gold = math.floor(key/(100*100))
-		local silver = math.floor(key/(100)%100)
 		local count = data[key]
-		print(ColorText(1,1,0.5)..string.format("%02d",gold).."  " .. ColorText(1,1,1)..string.format("%02d",silver).."  "..ColorText(0.5,0.5,1)..count)
+		print(TextMoney(key).."  "..ColorText(0.5,0.5,1)..count)
 	end
 end
 
+function DisplayPercentile(data,sortedKeys,total,percentile)
+	local p = Percentile(data,sortedKeys,total,percentile)
 
+	print(ColorText(1,0,0)..string.format("%02d",percentile*100).."% Percentile " ..TextMoney(p))
+end
+
+
+function Percentile(data,sortedKeys,total,percentile)
+	local desired = math.floor(total*percentile)
+	--print(desired)
+
+	local running = 0
+	for _,key in ipairs(sortedKeys) do
+
+		local count = data[key]
+
+		running = running + count
+
+		if running>desired then
+			return key
+		end
+
+	end
+end
 
 
 function Auction_OnUpdate(...)
