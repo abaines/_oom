@@ -73,7 +73,7 @@ function ProcessData(data)
 		return
 	end
 
-	DisplayAllData(data,sortedKeys)
+	--DisplayAllData(data,sortedKeys)
 
 	print(ColorText(0,1,0.5)..total..ColorText())
 
