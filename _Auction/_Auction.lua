@@ -2,9 +2,9 @@
 function Auction_OnLoad(...)
 	local t_Auction_OnLoad = time()
 
-	-- AuctionFrame:RegisterEvent("AUCTION_HOUSE_NEW_RESULTS_RECEIVED");
-	AuctionFrame:RegisterEvent("COMMODITY_SEARCH_RESULTS_UPDATED");
-	AuctionFrame:RegisterEvent("ITEM_SEARCH_RESULTS_UPDATED");
+	-- OOMAuctionFrame:RegisterEvent("AUCTION_HOUSE_NEW_RESULTS_RECEIVED");
+	OOMAuctionFrame:RegisterEvent("COMMODITY_SEARCH_RESULTS_UPDATED");
+	OOMAuctionFrame:RegisterEvent("ITEM_SEARCH_RESULTS_UPDATED");
 
 	print("Auction_OnLoad()")
 end
@@ -24,6 +24,8 @@ function Auction_OnEvent(self,event,...)
 	if not xtimer("Auction_OnEvent",0.75) then
 		return
 	end
+
+	print(event)
 
 	if event=="COMMODITY_SEARCH_RESULTS_UPDATED" then
 		CommoditySearchResultsUpdated(arg1)

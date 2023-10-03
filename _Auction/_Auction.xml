@@ -2,7 +2,7 @@
 
 	<Script file="_Auction.lua"/>
 
-	<Frame name="AuctionFrame" hidden="false">
+	<Frame name="OOMAuctionFrame" hidden="false">
 		<Scripts>
 			<OnLoad>
 				Auction_OnLoad();
