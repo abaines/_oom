@@ -100,10 +100,10 @@ function DisplayAllData(data,sortedKeys)
 end
 
 function DisplayPercentile(data,sortedKeys,total,percentile)
-	local p, desired = Percentile(data,sortedKeys,total,percentile)
+	local p, desired, lowestValue = Percentile(data,sortedKeys,total,percentile)
 
 	--print(desired)
-	print(ColorText(1,0,0)..string.format("%02d",percentile*100).."% Percentile " ..TextMoney(p))
+	print(ColorText(1,0,0)..string.format("%02d",percentile*100).."% Percentile " ..TextMoney(p).."   "..ColorText(0.5,0.5,1)..round(100*p/lowestValue,2).."%")
 end
 
 
@@ -111,20 +111,22 @@ function Percentile(data,sortedKeys,total,percentile)
 	local desired = math.floor(total*percentile)
 
 	local lastKey = nil
+	local firstKey = nil
 	local running = 0
 	for _,key in ipairs(sortedKeys) do
+		firstKey = firstKey or key
 
 		local count = data[key]
 
 		running = running + count
 
 		if running>desired then
-			return key, desired
+			return key, desired, firstKey
 		end
 		lastKey = key
 	end
 
-	return lastKey, desired
+	return lastKey, desired, firstKey
 end
 
 
