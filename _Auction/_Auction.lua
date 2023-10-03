@@ -69,6 +69,10 @@ function ProcessData(data)
 	end
 	table.sort(sortedKeys)
 
+	if total<=0 then
+		return
+	end
+
 	DisplayData(data,sortedKeys)
 
 	print(ColorText(0,1,0.5)..total..ColorText())
@@ -76,6 +80,7 @@ function ProcessData(data)
 	DisplayPercentile(data,sortedKeys,total,0.0)
 	DisplayPercentile(data,sortedKeys,total,0.1)
 	DisplayPercentile(data,sortedKeys,total,0.5)
+	DisplayPercentile(data,sortedKeys,total,1.5)
 end
 
 function TextMoney(value)
@@ -94,16 +99,17 @@ function DisplayData(data,sortedKeys)
 end
 
 function DisplayPercentile(data,sortedKeys,total,percentile)
-	local p = Percentile(data,sortedKeys,total,percentile)
+	local p, desired = Percentile(data,sortedKeys,total,percentile)
 
+	--print(desired)
 	print(ColorText(1,0,0)..string.format("%02d",percentile*100).."% Percentile " ..TextMoney(p))
 end
 
 
 function Percentile(data,sortedKeys,total,percentile)
 	local desired = math.floor(total*percentile)
-	--print(desired)
 
+	local lastKey = nil
 	local running = 0
 	for _,key in ipairs(sortedKeys) do
 
@@ -112,10 +118,12 @@ function Percentile(data,sortedKeys,total,percentile)
 		running = running + count
 
 		if running>desired then
-			return key
+			return key, desired
 		end
-
+		lastKey = key
 	end
+
+	return lastKey, desired
 end
 
 
