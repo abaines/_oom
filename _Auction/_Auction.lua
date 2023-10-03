@@ -61,7 +61,18 @@ end
 
 
 function ProcessData(data)
-	tprint(data)
+	local sortedKeys = {}
+	local total = 0
+	for key, value in pairs(data) do
+		table.insert(sortedKeys, key)
+		total = total + value
+	end
+	table.sort(sortedKeys)
+
+	for _,key in ipairs(sortedKeys) do
+		print(key, data[key])
+	end
+	print(total)
 end
 
 
