@@ -69,10 +69,18 @@ function ProcessData(data)
 	end
 	table.sort(sortedKeys)
 
+	displayData(data,sortedKeys)
+
+	print(ColorText(0,1,0.5)..total..ColorText())
+end
+
+function displayData(data,sortedKeys)
 	for _,key in ipairs(sortedKeys) do
-		print(key, data[key])
+		local gold = math.floor(key/(100*100))
+		local silver = math.floor(key/(100)%100)
+		local count = data[key]
+		print(ColorText(1,1,0.5)..string.format("%02d",gold).."  " .. ColorText(1,1,1)..string.format("%02d",silver).."  "..ColorText(0.5,0.5,1)..count)
 	end
-	print(total)
 end
 
 
