@@ -77,12 +77,11 @@ function ProcessData(data)
 
 	print("Total: " .. ColorText(0,1,0.5)..total..ColorText())
 
-	DisplayPercentile(data,sortedKeys,total,0.010)
-	DisplayPercentile(data,sortedKeys,total,0.020)
-	DisplayPercentile(data,sortedKeys,total,0.040)
-	DisplayPercentile(data,sortedKeys,total,0.080)
-	DisplayPercentile(data,sortedKeys,total,0.160)
-	DisplayPercentile(data,sortedKeys,total,0.320)
+	DisplayPercentile(data,sortedKeys,total,0.005)
+	DisplayPercentile(data,sortedKeys,total,0.014)
+	DisplayPercentile(data,sortedKeys,total,0.041)
+	DisplayPercentile(data,sortedKeys,total,0.116)
+	DisplayPercentile(data,sortedKeys,total,0.330)
 end
 
 function TextMoney(value)
