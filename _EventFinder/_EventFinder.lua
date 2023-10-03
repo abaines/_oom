@@ -137,6 +137,10 @@ end
 function logic6(argString,event)
 	local lArgString = string.lower(argString)
 
+	if true then
+		return false
+	end
+
 	if event=="AUCTION_HOUSE_NEW_RESULTS_RECEIVED" or event=="COMMODITY_SEARCH_RESULTS_UPDATED" or event=="ITEM_SEARCH_RESULTS_UPDATED" then
 		return false
 	end
