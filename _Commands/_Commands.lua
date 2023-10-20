@@ -289,7 +289,9 @@ local function OOMADDON_SOULBOUND_HOOKER()
 		tip:SetBagItem(bag, slot)
 
 		local MerchantFrameVisible = MerchantFrame and MerchantFrame:IsVisible()
-		if SendMailFrame:IsVisible() or MailFrame:IsVisible() or global_oom_soulbound_hooker_toggle or MerchantFrameVisible then
+		local AuctionHouseFrameVisible = AuctionHouseFrame and AuctionHouseFrame:IsVisible()
+		local MailFrameVisible = SendMailFrame:IsVisible() or MailFrame:IsVisible()
+		if MailFrameVisible or global_oom_soulbound_hooker_toggle or MerchantFrameVisible or AuctionHouseFrameVisible then
 			for t = 1, tip:NumLines() do
 				local str = _G['MailBagScantipTextLeft' .. t]
 				if str and (str:GetText() == ITEM_SOULBOUND or str:GetText() == ITEM_BIND_QUEST) then
