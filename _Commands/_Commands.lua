@@ -288,7 +288,8 @@ local function OOMADDON_SOULBOUND_HOOKER()
 		tip:SetOwner(UIParent,'ANCHOR_NONE')
 		tip:SetBagItem(bag, slot)
 
-		if SendMailFrame:IsVisible() or MailFrame:IsVisible() or global_oom_soulbound_hooker_toggle then
+		local MerchantFrameVisible = MerchantFrame and MerchantFrame:IsVisible()
+		if SendMailFrame:IsVisible() or MailFrame:IsVisible() or global_oom_soulbound_hooker_toggle or MerchantFrameVisible then
 			for t = 1, tip:NumLines() do
 				local str = _G['MailBagScantipTextLeft' .. t]
 				if str and (str:GetText() == ITEM_SOULBOUND or str:GetText() == ITEM_BIND_QUEST) then
@@ -357,7 +358,9 @@ local function OOMADDON_SOULBOUND_HOOKER()
 	local function scannerUpdateCombined(frame)
 		local SMFV = ScrappingMachineFrame and ScrappingMachineFrame:IsVisible()
 		local AHFV = AuctionHouseFrame and AuctionHouseFrame:IsVisible()
-		local featureEnabled = SMFV or SendMailFrame:IsVisible() or MailFrame:IsVisible() or global_oom_soulbound_hooker_toggle or AHFV
+		local MerchantFrameVisible = MerchantFrame and MerchantFrame:IsVisible()
+		local MailFrameVisible = SendMailFrame:IsVisible() or MailFrame:IsVisible()
+		local featureEnabled = SMFV or MailFrameVisible or global_oom_soulbound_hooker_toggle or AHFV or MerchantFrameVisible
 		local frameName, frameID = frame:GetName(), frame:GetID()
 		local invert = SMFV
 		--print("scannerUpdateCombined()",frameName,frameID)
