@@ -1365,6 +1365,9 @@ end
 
 
 function GetMountSpeed()
+	local function GetSpellInfo(spellID)
+		return C_Spell.GetSpellInfo(spellID)
+	end
 
     if GetSpellInfo("Flight Master's License") then
         Flight_Masters_License = "Flight Master's License"
