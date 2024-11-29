@@ -1,4 +1,5 @@
-## Interface: 110007
+## Interface: 110005
+## Version: 0.0.1
 ## Title: _Library |cffFF6600(core)
 ## Author: Kizrak
 ## DefaultState: Enabled

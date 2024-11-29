@@ -1,4 +1,4 @@
-## Interface: 110007
+## Interface: 110005
 ## Title: _Character
 ## Notes: For Recording Character sheet details, like class/race/level, professions, gold, heirlooms, and bags
 ## DefaultState: Enabled

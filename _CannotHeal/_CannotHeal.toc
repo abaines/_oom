@@ -1,4 +1,4 @@
-## Interface: 110007
+## Interface: 110005
 ## Title: _CannotHeal |cff660066(Beta)
 ## Author: Kizrak
 ## DefaultState: Enabled
