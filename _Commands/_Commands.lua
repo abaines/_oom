@@ -377,6 +377,11 @@ local function OOMADDON_SOULBOUND_HOOKER()
 	end
 
 	local function setupHookForSoulbound()
+
+		if not UIParent or not UIParent.ContainerFrames then
+			print("MISSING UIParent.ContainerFrames !")
+			return
+		end
 		if not global_oom_soulbound_Hook_Hooked then
 
 			hooksecurefunc(ContainerFrameCombinedBags, "UpdateItems", scannerUpdateCombined)
