@@ -1,5 +1,5 @@
 # Ignore everything except...
-/**
+/**/
 !/.gitignore
 
 !/.github/
@@ -52,3 +52,5 @@
 
 !/_Template/
 !/_Template/**
+
+*.zip
