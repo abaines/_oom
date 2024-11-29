@@ -1,4 +1,4 @@
-## Interface: 100105
+## Interface: 110007
 ## Title: _EventFinder |cff006600(code development)
 ## Author: Kizrak
 ## DefaultState: Enabled
