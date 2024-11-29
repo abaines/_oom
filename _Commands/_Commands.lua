@@ -376,16 +376,21 @@ local function OOMADDON_SOULBOUND_HOOKER()
 		end
 	end
 
-	if not global_oom_soulbound_Hook_Hooked then
+	local function setupHookForSoulbound()
+		if not global_oom_soulbound_Hook_Hooked then
 
-		hooksecurefunc(ContainerFrameCombinedBags, "UpdateItems", scannerUpdateCombined)
+			hooksecurefunc(ContainerFrameCombinedBags, "UpdateItems", scannerUpdateCombined)
 
-		for _, containerFrame in ipairs(UIParent.ContainerFrames) do
-			hooksecurefunc(containerFrame, "UpdateItems", scannerUpdate)
+			for _, containerFrame in ipairs(UIParent.ContainerFrames) do
+				hooksecurefunc(containerFrame, "UpdateItems", scannerUpdate)
+			end
+
+			global_oom_soulbound_Hook_Hooked = true
 		end
-
-		global_oom_soulbound_Hook_Hooked = true
 	end
+
+	setupHookForSoulbound()
+
 end
 
 OOMADDON_SOULBOUND_HOOKER()
