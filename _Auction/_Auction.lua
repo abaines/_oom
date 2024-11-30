@@ -33,7 +33,7 @@ function Auction_OnEvent(self,event,...)
 		ItemSearchResultsUpdated(arg1)
 	else
 		print(event)
-		tprint(arg1)
+		printif(arg1)
 		printif(arg2)
 		printif(arg3)
 		printif(arg4)
@@ -42,7 +42,13 @@ function Auction_OnEvent(self,event,...)
 	end
 end
 
+local function printItemName(itemID)
+	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(itemID)
+	print(itemName)
+end
+
 function CommoditySearchResultsUpdated(itemID)
+	printItemName(itemID)
 	local data = {}
 	for index = 1, C_AuctionHouse.GetNumCommoditySearchResults(itemID) do
 		local result = C_AuctionHouse.GetCommoditySearchResultInfo(itemID, index)
@@ -52,6 +58,7 @@ function CommoditySearchResultsUpdated(itemID)
 end
 
 function ItemSearchResultsUpdated(itemKey)
+	printItemName(itemKey)
 	local data = {}
 	for index = 1, C_AuctionHouse.GetNumItemSearchResults(itemKey) do
 		local result = C_AuctionHouse.GetItemSearchResultInfo(itemKey, index)
