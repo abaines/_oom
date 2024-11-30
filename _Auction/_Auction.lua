@@ -43,6 +43,10 @@ function Auction_OnEvent(self,event,...)
 end
 
 local function printItemName(itemID)
+	if (type(itemID) == "table") then
+		printItemName(itemID.itemID)
+		return
+	end
 	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(itemID)
 	print(itemName)
 end
