@@ -25,6 +25,7 @@ function Auction_OnEvent(self,event,...)
 		return
 	end
 
+	print(" ")
 	print(event)
 
 	if event=="COMMODITY_SEARCH_RESULTS_UPDATED" then
