@@ -26,7 +26,7 @@ function Auction_OnEvent(self,event,...)
 	end
 
 	print(" ")
-	print(event)
+	print(string.lower(event))
 
 	if event=="COMMODITY_SEARCH_RESULTS_UPDATED" then
 		CommoditySearchResultsUpdated(arg1)
