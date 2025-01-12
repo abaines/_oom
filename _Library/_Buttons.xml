@@ -1,10 +1,14 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
 
-	<Button name="smartassist" inherits="SecureActionButtonTemplate">
+	<Button name="smartassist" inherits="SecureActionButtonTemplate" parent="UIParent" registerForClicks="AnyUp, AnyDown">
 		<Scripts>
 			<OnLoad>
 smartassist:SetAttribute("type", "macro")
-smartassist:SetAttribute("macrotext", "/target [harm,nodead] [@focus-target,harm,nodead] [@target-target,harm,nodead] [@pet-target,harm,nodead] [@mouseover-target,harm,nodead] \n/stopmacro [harm,nodead] [group] \n/targetenemy")
+smartassist:SetAttribute("macrotext", "/say test1 \n/target [harm,nodead] [@focus-target,harm,nodead] [@target-target,harm,nodead] [@pet-target,harm,nodead] [@mouseover-target,harm,nodead] \n/stopmacro [harm,nodead] [group] \n/targetenemy")
+DEFAULT_CHAT_FRAME:AddMessage("smartassist ");
+-- 11.0.2 restriction
+-- https://warcraft.wiki.gg/index.php?title=SecureActionButtonTemplate&diff=6122366&oldid=5952989
+-- ... and cannot /click buttons that would execute other macros
 			</OnLoad>
 		</Scripts>
 	</Button>
