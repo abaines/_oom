@@ -64,6 +64,11 @@ function checkUnit(unit)
     if class=='rogue' then
         local race = string.lower(engRace)
         local iconToUse = racesToIcon[race]
+
+        if not iconToUse and xtimer("TurkeyLurkey-iconToUse-error"..iconToUse,60*60) then
+            -- print("! " .. race)
+            return
+        end
         
         if xtimer("TurkeyLurkey"..name..class..race,60) then
             print(name,class,race)
